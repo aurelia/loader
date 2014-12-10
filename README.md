@@ -1,4 +1,4 @@
-# aurelia-dependency-injection
+# aurelia-loader
 
 This library is part of the [Aurelia](http://www.aurelia.io/) platform and contains an abstract module which specifies an interface for loading modules and view templates.
 
