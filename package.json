@@ -1,6 +1,6 @@
 {
   "name": "aurelia-loader",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An abstract module which specifies an interface for loading modules and view templates.",
   "keywords": [
     "aurelia",
@@ -22,6 +22,9 @@
     "main": "amd/index",
     "directories": {
       "lib": "dist"
+    },
+    "dependencies": {
+      "aurelia-path": "github:aurelia/path@^0.0.1"
     }
   },
   "devDependencies": {

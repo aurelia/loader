@@ -6,6 +6,7 @@ This library is part of the [Aurelia](http://www.aurelia.io/) platform and conta
 
 ## Dependencies
 
+* [aurelia-path](https://github.com/aurelia/path)
 * aurelia-loader-polyfills
 
 ## Platform Support
