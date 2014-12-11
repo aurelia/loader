@@ -4,6 +4,14 @@ This library is part of the [Aurelia](http://www.aurelia.io/) platform and conta
 
 > To keep up to date on [Aurelia](http://www.aurelia.io/), please visit and subscribe to [the official blog](http://blog.durandal.io/). If you have questions, we invite you to join us on [our Gitter Channel](https://gitter.im/Aurelia/Discuss).
 
+## Polyfills
+
+* Depending on target browser(s), [es6-shim](https://github.com/paulmillr/es6-shim) is likely required for `Promise` support.
+
+* If targeting IE, [aurelia-html-template-element](https://github.com/aurelia/html-template-element) is required.
+
+* If not targeting Chrome, the HTMLImports polyfill from [webcomponentsjs](https://github.com/webcomponents/webcomponentsjs) is required. Note that you may also substitue with the entire `webcomponents-lite.js` or `webcomponents.js` polyfills. On top of this you may also add `polymer.html` if using polymer elements is required for your scenario.
+
 ## Dependencies
 
 * [aurelia-path](https://github.com/aurelia/path)
