@@ -31,6 +31,11 @@ var Loader = (function () {
         }
 
         var template = doc.querySelector("template");
+
+        if (!template) {
+          throw new Error("There was no template element found in '" + url + "'.");
+        }
+
         resolve(template);
       });
     });
