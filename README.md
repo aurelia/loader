@@ -14,8 +14,13 @@ This library is part of the [Aurelia](http://www.aurelia.io/) platform and conta
 
 ## Dependencies
 
-* [aurelia-path](https://github.com/aurelia/path)
-* aurelia-loader-polyfills
+This library has **NO** external dependencies other than the above Polyfills.
+
+## Used By
+
+* [aurelia-framework](https://github.com/aurelia/framework)
+* [aurelia-loader-systemjs](https://github.com/aurelia/loader-systemjs)
+* [aurelia-templating](https://github.com/aurelia/templating)
 
 ## Platform Support
 
