@@ -15,7 +15,7 @@
     "url": "http://github.com/aurelia/loader"
   },
   "dependencies": {
-    "aurelia-html-template-element": "0.1.0",
+    "aurelia-html-template-element": "0.1.1",
     "es6-shim": "0.21.1",
     "webcomponentsjs": "webcomponents/webcomponentsjs"
   }
