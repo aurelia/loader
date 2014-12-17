@@ -1,6 +1,14 @@
-import {normalize} from 'aurelia-path';
-
 var hasTemplateElement = ('content' in document.createElement('template'));
+
+function importElements(frag, link, callback) {
+  document.head.appendChild(frag);
+
+  if(window.Polymer && Polymer.whenReady){
+    Polymer.whenReady(callback);
+  }else{
+    link.addEventListener('load', callback);
+  }
+}
 
 export class Loader {
   static createDefaultLoader(){
@@ -16,43 +24,39 @@ export class Loader {
   }
 
   loadTemplate(url){
+    throw new Error('Loader must implement loadTemplate(url).');
+  }
+
+  importDocument(url){
     return new Promise((resolve, reject) => {
-      url = normalize('./' + url, this.getBaseUrl());
+      var frag = document.createDocumentFragment();
+      var link = document.createElement('link');
 
-      _import(url, doc => {
-        if(!hasTemplateElement){
-          HTMLTemplateElement.bootstrap(doc);
-        }
+      link.rel = 'import';
+      link.href = url;
+      frag.appendChild(link);
 
-        var template = doc.querySelector('template');
-
-        if(!template){
-          throw new Error(`There was no template element found in '${url}'.`);
-        }
-
-        resolve(template);
-      });
+      importElements(frag, link, () => resolve(link.import));
     });
   }
-}
 
-function importElements(frag, link, callback) {
-  document.head.appendChild(frag);
-
-  if(window.Polymer && Polymer.whenReady){
-    Polymer.whenReady(() => callback(link.import));
-  }else{
-    link.addEventListener('load', () => callback(link.import));
+  importTemplate(url){
+    return this.importDocument(url).then(doc => {
+      return this.findTemplate(doc, url);
+    });
   }
-}
 
-function _import(url, callback) {
-  var frag = document.createDocumentFragment();
-  var link = document.createElement('link');
+  findTemplate(doc, url){
+    if(!hasTemplateElement){
+      HTMLTemplateElement.bootstrap(doc);
+    }
 
-  link.rel = 'import';
-  link.href = url;
-  frag.appendChild(link);
+    var template = doc.querySelector('template');
 
-  importElements(frag, link, callback);
+    if(!template){
+      throw new Error(`There was no template element found in '${url}'.`);
+    }
+
+    return template;
+  }
 }

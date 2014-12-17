@@ -1,9 +1,16 @@
 "use strict";
 
-var normalize = require('aurelia-path').normalize;
-
-
 var hasTemplateElement = ("content" in document.createElement("template"));
+
+function importElements(frag, link, callback) {
+  document.head.appendChild(frag);
+
+  if (window.Polymer && Polymer.whenReady) {
+    Polymer.whenReady(callback);
+  } else {
+    link.addEventListener("load", callback);
+  }
+}
 
 var Loader = (function () {
   var Loader = function Loader() {};
@@ -21,53 +28,46 @@ var Loader = (function () {
   };
 
   Loader.prototype.loadTemplate = function (url) {
-    var _this = this;
+    throw new Error("Loader must implement loadTemplate(url).");
+  };
+
+  Loader.prototype.importDocument = function (url) {
     return new Promise(function (resolve, reject) {
-      url = normalize("./" + url, _this.getBaseUrl());
+      var frag = document.createDocumentFragment();
+      var link = document.createElement("link");
 
-      _import(url, function (doc) {
-        if (!hasTemplateElement) {
-          HTMLTemplateElement.bootstrap(doc);
-        }
+      link.rel = "import";
+      link.href = url;
+      frag.appendChild(link);
 
-        var template = doc.querySelector("template");
-
-        if (!template) {
-          throw new Error("There was no template element found in '" + url + "'.");
-        }
-
-        resolve(template);
+      importElements(frag, link, function () {
+        return resolve(link["import"]);
       });
     });
+  };
+
+  Loader.prototype.importTemplate = function (url) {
+    var _this = this;
+    return this.importDocument(url).then(function (doc) {
+      return _this.findTemplate(doc, url);
+    });
+  };
+
+  Loader.prototype.findTemplate = function (doc, url) {
+    if (!hasTemplateElement) {
+      HTMLTemplateElement.bootstrap(doc);
+    }
+
+    var template = doc.querySelector("template");
+
+    if (!template) {
+      throw new Error("There was no template element found in '" + url + "'.");
+    }
+
+    return template;
   };
 
   return Loader;
 })();
 
 exports.Loader = Loader;
-
-
-function importElements(frag, link, callback) {
-  document.head.appendChild(frag);
-
-  if (window.Polymer && Polymer.whenReady) {
-    Polymer.whenReady(function () {
-      return callback(link["import"]);
-    });
-  } else {
-    link.addEventListener("load", function () {
-      return callback(link["import"]);
-    });
-  }
-}
-
-function _import(url, callback) {
-  var frag = document.createDocumentFragment();
-  var link = document.createElement("link");
-
-  link.rel = "import";
-  link.href = url;
-  frag.appendChild(link);
-
-  importElements(frag, link, callback);
-}
