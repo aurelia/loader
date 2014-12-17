@@ -1,3 +1,12 @@
+## 0.2.0 (2014-12-17)
+
+
+#### Bug Fixes
+
+* **loadTemplate:** refactor base url handling ([7cf42acf](http://github.com/aurelia/loader/commit/7cf42acfdf598ed1bb399cb3cda1a98c9b2b2beb))
+* **package:** update dependencies to latest versions ([bc8d5c7d](http://github.com/aurelia/loader/commit/bc8d5c7d7247107579d08d434d996de976fa0c28))
+
+
 ### 0.1.1 (2014-12-11)
 
 
