@@ -1,3 +1,11 @@
+## 0.3.0 (2015-01-06)
+
+
+#### Features
+
+* **build:** update compile, switch to register modules, switch to core-js ([5b830212](http://github.com/aurelia/loader/commit/5b8302120909bbc6fbc0941ec4256299204c6e80))
+
+
 ## 0.2.0 (2014-12-17)
 
 

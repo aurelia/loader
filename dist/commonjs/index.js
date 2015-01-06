@@ -12,62 +12,58 @@ function importElements(frag, link, callback) {
   }
 }
 
-var Loader = (function () {
-  var Loader = function Loader() {};
+var Loader = function Loader() {};
 
-  Loader.createDefaultLoader = function () {
-    throw new Error("No default loader module imported.");
-  };
+Loader.createDefaultLoader = function () {
+  throw new Error("No default loader module imported.");
+};
 
-  Loader.prototype.loadModule = function (id) {
-    throw new Error("Loaders must implement loadModule(id).");
-  };
+Loader.prototype.loadModule = function (id) {
+  throw new Error("Loaders must implement loadModule(id).");
+};
 
-  Loader.prototype.loadAllModules = function (ids) {
-    throw new Error("Loader must implement loadAllModules(ids).");
-  };
+Loader.prototype.loadAllModules = function (ids) {
+  throw new Error("Loader must implement loadAllModules(ids).");
+};
 
-  Loader.prototype.loadTemplate = function (url) {
-    throw new Error("Loader must implement loadTemplate(url).");
-  };
+Loader.prototype.loadTemplate = function (url) {
+  throw new Error("Loader must implement loadTemplate(url).");
+};
 
-  Loader.prototype.importDocument = function (url) {
-    return new Promise(function (resolve, reject) {
-      var frag = document.createDocumentFragment();
-      var link = document.createElement("link");
+Loader.prototype.importDocument = function (url) {
+  return new Promise(function (resolve, reject) {
+    var frag = document.createDocumentFragment();
+    var link = document.createElement("link");
 
-      link.rel = "import";
-      link.href = url;
-      frag.appendChild(link);
+    link.rel = "import";
+    link.href = url;
+    frag.appendChild(link);
 
-      importElements(frag, link, function () {
-        return resolve(link["import"]);
-      });
+    importElements(frag, link, function () {
+      return resolve(link["import"]);
     });
-  };
+  });
+};
 
-  Loader.prototype.importTemplate = function (url) {
-    var _this = this;
-    return this.importDocument(url).then(function (doc) {
-      return _this.findTemplate(doc, url);
-    });
-  };
+Loader.prototype.importTemplate = function (url) {
+  var _this = this;
+  return this.importDocument(url).then(function (doc) {
+    return _this.findTemplate(doc, url);
+  });
+};
 
-  Loader.prototype.findTemplate = function (doc, url) {
-    if (!hasTemplateElement) {
-      HTMLTemplateElement.bootstrap(doc);
-    }
+Loader.prototype.findTemplate = function (doc, url) {
+  if (!hasTemplateElement) {
+    HTMLTemplateElement.bootstrap(doc);
+  }
 
-    var template = doc.querySelector("template");
+  var template = doc.querySelector("template");
 
-    if (!template) {
-      throw new Error("There was no template element found in '" + url + "'.");
-    }
+  if (!template) {
+    throw new Error("There was no template element found in '" + url + "'.");
+  }
 
-    return template;
-  };
-
-  return Loader;
-})();
+  return template;
+};
 
 exports.Loader = Loader;
