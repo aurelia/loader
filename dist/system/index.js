@@ -24,11 +24,11 @@ System.register([], function (_export) {
 
       hasTemplateElement = "content" in document.createElement("template");
       Loader = (function () {
-        var Loader = function Loader() {};
+        function Loader() {}
 
         _prototypeProperties(Loader, {
           createDefaultLoader: {
-            value: function () {
+            value: function createDefaultLoader() {
               throw new Error("No default loader module imported.");
             },
             writable: true,
@@ -37,7 +37,7 @@ System.register([], function (_export) {
           }
         }, {
           loadModule: {
-            value: function (id) {
+            value: function loadModule(id) {
               throw new Error("Loaders must implement loadModule(id).");
             },
             writable: true,
@@ -45,7 +45,7 @@ System.register([], function (_export) {
             configurable: true
           },
           loadAllModules: {
-            value: function (ids) {
+            value: function loadAllModules(ids) {
               throw new Error("Loader must implement loadAllModules(ids).");
             },
             writable: true,
@@ -53,7 +53,7 @@ System.register([], function (_export) {
             configurable: true
           },
           loadTemplate: {
-            value: function (url) {
+            value: function loadTemplate(url) {
               throw new Error("Loader must implement loadTemplate(url).");
             },
             writable: true,
@@ -61,7 +61,7 @@ System.register([], function (_export) {
             configurable: true
           },
           importDocument: {
-            value: function (url) {
+            value: function importDocument(url) {
               return new Promise(function (resolve, reject) {
                 var frag = document.createDocumentFragment();
                 var link = document.createElement("link");
@@ -80,7 +80,7 @@ System.register([], function (_export) {
             configurable: true
           },
           importTemplate: {
-            value: function (url) {
+            value: function importTemplate(url) {
               var _this = this;
               return this.importDocument(url).then(function (doc) {
                 return _this.findTemplate(doc, url);
@@ -91,7 +91,7 @@ System.register([], function (_export) {
             configurable: true
           },
           findTemplate: {
-            value: function (doc, url) {
+            value: function findTemplate(doc, url) {
               if (!hasTemplateElement) {
                 HTMLTemplateElement.bootstrap(doc);
               }

@@ -1,3 +1,11 @@
+### 0.3.2 (2015-01-22)
+
+
+#### Bug Fixes
+
+* **package:** update dependencies ([0ca68f2d](http://github.com/aurelia/loader/commit/0ca68f2d0be882593f3f109b10546a3021f86d92))
+
+
 ### 0.3.1 (2015-01-12)
 
 * Update compiled output.

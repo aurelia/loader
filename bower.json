@@ -1,6 +1,6 @@
 {
   "name": "aurelia-loader",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "An abstract module which specifies an interface for loading modules and view templates.",
   "keywords": [
     "aurelia",

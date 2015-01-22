@@ -18,11 +18,11 @@ function importElements(frag, link, callback) {
 }
 
 var Loader = (function () {
-  var Loader = function Loader() {};
+  function Loader() {}
 
   _prototypeProperties(Loader, {
     createDefaultLoader: {
-      value: function () {
+      value: function createDefaultLoader() {
         throw new Error("No default loader module imported.");
       },
       writable: true,
@@ -31,7 +31,7 @@ var Loader = (function () {
     }
   }, {
     loadModule: {
-      value: function (id) {
+      value: function loadModule(id) {
         throw new Error("Loaders must implement loadModule(id).");
       },
       writable: true,
@@ -39,7 +39,7 @@ var Loader = (function () {
       configurable: true
     },
     loadAllModules: {
-      value: function (ids) {
+      value: function loadAllModules(ids) {
         throw new Error("Loader must implement loadAllModules(ids).");
       },
       writable: true,
@@ -47,7 +47,7 @@ var Loader = (function () {
       configurable: true
     },
     loadTemplate: {
-      value: function (url) {
+      value: function loadTemplate(url) {
         throw new Error("Loader must implement loadTemplate(url).");
       },
       writable: true,
@@ -55,7 +55,7 @@ var Loader = (function () {
       configurable: true
     },
     importDocument: {
-      value: function (url) {
+      value: function importDocument(url) {
         return new Promise(function (resolve, reject) {
           var frag = document.createDocumentFragment();
           var link = document.createElement("link");
@@ -74,7 +74,7 @@ var Loader = (function () {
       configurable: true
     },
     importTemplate: {
-      value: function (url) {
+      value: function importTemplate(url) {
         var _this = this;
         return this.importDocument(url).then(function (doc) {
           return _this.findTemplate(doc, url);
@@ -85,7 +85,7 @@ var Loader = (function () {
       configurable: true
     },
     findTemplate: {
-      value: function (doc, url) {
+      value: function findTemplate(doc, url) {
         if (!hasTemplateElement) {
           HTMLTemplateElement.bootstrap(doc);
         }
