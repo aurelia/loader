@@ -1,3 +1,11 @@
+### 0.3.3 (2015-01-24)
+
+
+#### Bug Fixes
+
+* **bower:** correct semver ranges ([430ba151](http://github.com/aurelia/loader/commit/430ba151e80add2bf57d049b773535788e706771))
+
+
 ### 0.3.2 (2015-01-22)
 
 
