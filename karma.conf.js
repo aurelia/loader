@@ -1,7 +1,7 @@
 // Karma configuration
 // Generated on Fri Dec 05 2014 16:49:29 GMT-0500 (EST)
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -19,12 +19,13 @@ module.exports = function(config) {
 
 
     // list of files / patterns to load in the browser
-    files: [],
+    files: [
+      {pattern: 'test/fixtures/*', included: false}
+    ],
 
 
     // list of files to exclude
-    exclude: [
-    ],
+    exclude: [],
 
 
     // preprocess matching files before serving them to the browser
