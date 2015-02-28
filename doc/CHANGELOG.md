@@ -1,3 +1,12 @@
+### 0.3.4 (2015-02-27)
+
+
+#### Bug Fixes
+
+* **build:** add missing bower bump ([7b0a109d](http://github.com/aurelia/loader/commit/7b0a109da46d64d5aa39730068f8c4b598fc66e0))
+* **package:** update dependencies ([f468bb26](http://github.com/aurelia/loader/commit/f468bb263c3254e3b87fce07e671afeed4e74f67))
+
+
 ### 0.3.3 (2015-01-24)
 
 

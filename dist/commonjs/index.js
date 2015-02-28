@@ -1,9 +1,8 @@
 "use strict";
 
-var _prototypeProperties = function (child, staticProps, instanceProps) {
-  if (staticProps) Object.defineProperties(child, staticProps);
-  if (instanceProps) Object.defineProperties(child.prototype, instanceProps);
-};
+var _prototypeProperties = function (child, staticProps, instanceProps) { if (staticProps) Object.defineProperties(child, staticProps); if (instanceProps) Object.defineProperties(child.prototype, instanceProps); };
+
+var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
 
 var hasTemplateElement = ("content" in document.createElement("template"));
 
@@ -17,8 +16,10 @@ function importElements(frag, link, callback) {
   }
 }
 
-var Loader = (function () {
-  function Loader() {}
+var Loader = exports.Loader = (function () {
+  function Loader() {
+    _classCallCheck(this, Loader);
+  }
 
   _prototypeProperties(Loader, {
     createDefaultLoader: {
@@ -26,7 +27,6 @@ var Loader = (function () {
         throw new Error("No default loader module imported.");
       },
       writable: true,
-      enumerable: true,
       configurable: true
     }
   }, {
@@ -35,7 +35,6 @@ var Loader = (function () {
         throw new Error("Loaders must implement loadModule(id).");
       },
       writable: true,
-      enumerable: true,
       configurable: true
     },
     loadAllModules: {
@@ -43,7 +42,6 @@ var Loader = (function () {
         throw new Error("Loader must implement loadAllModules(ids).");
       },
       writable: true,
-      enumerable: true,
       configurable: true
     },
     loadTemplate: {
@@ -51,7 +49,6 @@ var Loader = (function () {
         throw new Error("Loader must implement loadTemplate(url).");
       },
       writable: true,
-      enumerable: true,
       configurable: true
     },
     importDocument: {
@@ -70,18 +67,17 @@ var Loader = (function () {
         });
       },
       writable: true,
-      enumerable: true,
       configurable: true
     },
     importTemplate: {
       value: function importTemplate(url) {
         var _this = this;
+
         return this.importDocument(url).then(function (doc) {
           return _this.findTemplate(doc, url);
         });
       },
       writable: true,
-      enumerable: true,
       configurable: true
     },
     findTemplate: {
@@ -99,7 +95,6 @@ var Loader = (function () {
         return template;
       },
       writable: true,
-      enumerable: true,
       configurable: true
     }
   });
@@ -107,4 +102,6 @@ var Loader = (function () {
   return Loader;
 })();
 
-exports.Loader = Loader;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});

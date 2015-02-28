@@ -1,8 +1,5 @@
 System.register([], function (_export) {
-  "use strict";
-
-  var _prototypeProperties, hasTemplateElement, Loader;
-
+  var _prototypeProperties, _classCallCheck, hasTemplateElement, Loader;
 
   function importElements(frag, link, callback) {
     document.head.appendChild(frag);
@@ -17,14 +14,17 @@ System.register([], function (_export) {
   return {
     setters: [],
     execute: function () {
-      _prototypeProperties = function (child, staticProps, instanceProps) {
-        if (staticProps) Object.defineProperties(child, staticProps);
-        if (instanceProps) Object.defineProperties(child.prototype, instanceProps);
-      };
+      "use strict";
+
+      _prototypeProperties = function (child, staticProps, instanceProps) { if (staticProps) Object.defineProperties(child, staticProps); if (instanceProps) Object.defineProperties(child.prototype, instanceProps); };
+
+      _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
 
       hasTemplateElement = "content" in document.createElement("template");
-      Loader = (function () {
-        function Loader() {}
+      Loader = _export("Loader", (function () {
+        function Loader() {
+          _classCallCheck(this, Loader);
+        }
 
         _prototypeProperties(Loader, {
           createDefaultLoader: {
@@ -32,7 +32,6 @@ System.register([], function (_export) {
               throw new Error("No default loader module imported.");
             },
             writable: true,
-            enumerable: true,
             configurable: true
           }
         }, {
@@ -41,7 +40,6 @@ System.register([], function (_export) {
               throw new Error("Loaders must implement loadModule(id).");
             },
             writable: true,
-            enumerable: true,
             configurable: true
           },
           loadAllModules: {
@@ -49,7 +47,6 @@ System.register([], function (_export) {
               throw new Error("Loader must implement loadAllModules(ids).");
             },
             writable: true,
-            enumerable: true,
             configurable: true
           },
           loadTemplate: {
@@ -57,7 +54,6 @@ System.register([], function (_export) {
               throw new Error("Loader must implement loadTemplate(url).");
             },
             writable: true,
-            enumerable: true,
             configurable: true
           },
           importDocument: {
@@ -76,18 +72,17 @@ System.register([], function (_export) {
               });
             },
             writable: true,
-            enumerable: true,
             configurable: true
           },
           importTemplate: {
             value: function importTemplate(url) {
               var _this = this;
+
               return this.importDocument(url).then(function (doc) {
                 return _this.findTemplate(doc, url);
               });
             },
             writable: true,
-            enumerable: true,
             configurable: true
           },
           findTemplate: {
@@ -105,14 +100,12 @@ System.register([], function (_export) {
               return template;
             },
             writable: true,
-            enumerable: true,
             configurable: true
           }
         });
 
         return Loader;
-      })();
-      _export("Loader", Loader);
+      })());
     }
   };
 });
