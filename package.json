@@ -19,10 +19,10 @@
     "url": "http://github.com/aurelia/loader"
   },
   "jspm": {
-    "main": "system/index",
+    "main": "index",
     "format": "register",
     "directories": {
-      "lib": "dist"
+      "lib": "dist/system"
     },
     "dependencies": {
       "aurelia-html-template-element": "github:aurelia/html-template-element@^0.1.3",
