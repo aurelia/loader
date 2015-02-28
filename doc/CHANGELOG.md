@@ -1,3 +1,11 @@
+### 0.3.5 (2015-02-28)
+
+
+#### Bug Fixes
+
+* **package:** change jspm directories ([64a8443b](http://github.com/aurelia/loader/commit/64a8443b6e1b4134393972448d431566108c8aa1))
+
+
 ### 0.3.4 (2015-02-27)
 
 
