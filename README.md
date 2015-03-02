@@ -14,7 +14,7 @@ This library is part of the [Aurelia](http://www.aurelia.io/) platform and conta
 
 ## Dependencies
 
-This library has **NO** external dependencies other than the above Polyfills.
+* [aurelia-path](https://github.com/aurelia/path)
 
 ## Used By
 

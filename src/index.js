@@ -1,3 +1,5 @@
+import {TemplateRegistryEntry} from './template-registry-entry';
+
 var hasTemplateElement = ('content' in document.createElement('template'));
 
 function importElements(frag, link, callback) {
@@ -11,8 +13,8 @@ function importElements(frag, link, callback) {
 }
 
 export class Loader {
-  static createDefaultLoader(){
-    throw new Error('No default loader module imported.');
+  constructor(){
+    this.templateRegistry = {};
   }
 
   loadModule(id){
@@ -25,6 +27,16 @@ export class Loader {
 
   loadTemplate(url){
     throw new Error('Loader must implement loadTemplate(url).');
+  }
+
+  getOrCreateTemplateRegistryEntry(id){
+    var entry = this.templateRegistry[id];
+
+    if(entry === undefined){
+      this.templateRegistry[id] = entry = new TemplateRegistryEntry(id);
+    }
+
+    return entry;
   }
 
   importDocument(url){

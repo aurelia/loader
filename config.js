@@ -10,6 +10,7 @@ System.config({
 System.config({
   "map": {
     "aurelia-html-template-element": "github:aurelia/html-template-element@0.1.3",
+    "aurelia-path": "github:aurelia/path@0.4.5",
     "core-js": "npm:core-js@0.4.6",
     "webcomponentsjs": "github:webcomponents/webcomponentsjs@0.5.3",
     "github:jspm/nodelibs-process@0.1.0": {
