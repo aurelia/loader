@@ -3,10 +3,6 @@ import {Loader} from '../src/index';
 
 describe("the abstract loader", () => {
 
-  it("should throw when calling the create default", () => {
-    expect(Loader.createDefaultLoader).toThrow();
-  });
-
   describe("instance", () => {
     var loader;
 
