@@ -26,22 +26,22 @@ export class TemplateRegistryEntry {
 
   setTemplate(template){
     var id = this.id,
-        auImportElements, i, ii, current, src;
+        useResources, i, ii, current, src;
 
     this.template = template;
-    auImportElements = template.content.querySelectorAll('au-import');
-    this.dependencies = new Array(auImportElements.length);
+    useResources = template.content.querySelectorAll('use');
+    this.dependencies = new Array(useResources.length);
 
-    if(auImportElements.length === 0){
+    if(useResources.length === 0){
       return;
     }
 
-    for(i = 0, ii = auImportElements.length; i < ii; ++i){
-      current = auImportElements[i];
+    for(i = 0, ii = useResources.length; i < ii; ++i){
+      current = useResources[i];
       src = current.getAttribute('from');
 
       if(!src){
-        throw new Error(`au-import element in ${this.id} has no "from" attribute.`);
+        throw new Error(`<use> element in ${this.id} has no "from" attribute.`);
       }
 
       this.dependencies[i] = new TemplateDependency(
