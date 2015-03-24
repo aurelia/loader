@@ -29,7 +29,7 @@ export class TemplateRegistryEntry {
         useResources, i, ii, current, src;
 
     this.template = template;
-    useResources = template.content.querySelectorAll('use');
+    useResources = template.content.querySelectorAll('require');
     this.dependencies = new Array(useResources.length);
 
     if(useResources.length === 0){
@@ -41,7 +41,7 @@ export class TemplateRegistryEntry {
       src = current.getAttribute('from');
 
       if(!src){
-        throw new Error(`<use> element in ${this.id} has no "from" attribute.`);
+        throw new Error(`<require> element in ${this.id} has no "from" attribute.`);
       }
 
       this.dependencies[i] = new TemplateDependency(
