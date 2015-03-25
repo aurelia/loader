@@ -1,5 +1,5 @@
-System.register([], function (_export) {
-  var _prototypeProperties, _classCallCheck, hasTemplateElement, Loader;
+System.register(["./template-registry-entry"], function (_export) {
+  var TemplateRegistryEntry, _prototypeProperties, _classCallCheck, hasTemplateElement, Loader;
 
   function importElements(frag, link, callback) {
     document.head.appendChild(frag);
@@ -12,7 +12,9 @@ System.register([], function (_export) {
   }
 
   return {
-    setters: [],
+    setters: [function (_templateRegistryEntry) {
+      TemplateRegistryEntry = _templateRegistryEntry.TemplateRegistryEntry;
+    }],
     execute: function () {
       "use strict";
 
@@ -24,17 +26,11 @@ System.register([], function (_export) {
       Loader = _export("Loader", (function () {
         function Loader() {
           _classCallCheck(this, Loader);
+
+          this.templateRegistry = {};
         }
 
-        _prototypeProperties(Loader, {
-          createDefaultLoader: {
-            value: function createDefaultLoader() {
-              throw new Error("No default loader module imported.");
-            },
-            writable: true,
-            configurable: true
-          }
-        }, {
+        _prototypeProperties(Loader, null, {
           loadModule: {
             value: function loadModule(id) {
               throw new Error("Loaders must implement loadModule(id).");
@@ -52,6 +48,19 @@ System.register([], function (_export) {
           loadTemplate: {
             value: function loadTemplate(url) {
               throw new Error("Loader must implement loadTemplate(url).");
+            },
+            writable: true,
+            configurable: true
+          },
+          getOrCreateTemplateRegistryEntry: {
+            value: function getOrCreateTemplateRegistryEntry(id) {
+              var entry = this.templateRegistry[id];
+
+              if (entry === undefined) {
+                this.templateRegistry[id] = entry = new TemplateRegistryEntry(id);
+              }
+
+              return entry;
             },
             writable: true,
             configurable: true

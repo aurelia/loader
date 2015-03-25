@@ -1,3 +1,19 @@
+## 0.4.0 (2015-03-24)
+
+
+#### Bug Fixes
+
+* **all:** properly export the TemplateRegistryEntry ([4c60c8f7](http://github.com/aurelia/loader/commit/4c60c8f77b53f1a34ab7a1825305d81d99d4b7d6))
+
+
+#### Features
+
+* **all:** new template registry and global loader ([99ec5e2e](http://github.com/aurelia/loader/commit/99ec5e2edf5e4dd3f1c52d42cc413f66608710cf))
+* **views:**
+  * view imports are now done with <require> ([2e68de3c](http://github.com/aurelia/loader/commit/2e68de3c4d4063abd602af157e13e3dccda16bdf))
+  * view imports are now done with <use> ([43b04172](http://github.com/aurelia/loader/commit/43b0417262578ac0578407c1b5e5880ba3351d45))
+
+
 ### 0.3.5 (2015-02-28)
 
 
