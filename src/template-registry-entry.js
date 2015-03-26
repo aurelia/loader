@@ -29,7 +29,7 @@ export class TemplateRegistryEntry {
         useResources, i, ii, current, src;
 
     this.template = template;
-    useResources = template.content.querySelectorAll('require');
+    useResources = template.content.getElementsByTagName('require');
     this.dependencies = new Array(useResources.length);
 
     if(useResources.length === 0){

@@ -63,7 +63,7 @@ export class Loader {
       HTMLTemplateElement.bootstrap(doc);
     }
 
-    var template = doc.querySelector('template');
+    var template = doc.getElementsByTagName('template')[0];
 
     if(!template){
       throw new Error(`There was no template element found in '${url}'.`);
