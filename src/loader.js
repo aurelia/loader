@@ -1,3 +1,4 @@
+import core from 'core-js';
 import {TemplateRegistryEntry} from './template-registry-entry';
 
 var hasTemplateElement = ('content' in document.createElement('template'));
