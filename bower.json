@@ -1,6 +1,6 @@
 {
   "name": "aurelia-loader",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "An abstract module which specifies an interface for loading modules and view templates.",
   "keywords": [
     "aurelia",
@@ -17,9 +17,9 @@
     "url": "http://github.com/aurelia/loader"
   },
   "dependencies": {
-    "aurelia-path": "^0.4.6",
-    "aurelia-html-template-element": "^0.1.2",
-    "core-js": "zloirock/core-js",
-    "webcomponentsjs": "webcomponents/webcomponentsjs"
+    "aurelia-html-template-element": "^0.2.0",
+    "aurelia-path": "^0.5.0",
+    "core-js": "github:zloirock/core-js",
+    "webcomponentsjs": "github:webcomponents/webcomponentsjs"
   }
 }

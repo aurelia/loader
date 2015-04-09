@@ -1,3 +1,12 @@
+## 0.5.0 (2015-04-09)
+
+
+#### Bug Fixes
+
+* **all:** update compiler and core-js imports ([a62dd4c3](http://github.com/aurelia/loader/commit/a62dd4c3a82ee9fba11f910a4ae3d0146f6c7ccb))
+* **template-registry-entry:** getElementsByTagName not available on document fragments ([c0d98338](http://github.com/aurelia/loader/commit/c0d983381ace9ef4fcbbda1d826bb3bdca1fdf43))
+
+
 ## 0.4.0 (2015-03-24)
 
 

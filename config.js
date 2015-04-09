@@ -9,16 +9,10 @@ System.config({
 
 System.config({
   "map": {
-    "aurelia-html-template-element": "github:aurelia/html-template-element@0.1.3",
-    "aurelia-path": "github:aurelia/path@0.4.6",
-    "core-js": "npm:core-js@0.4.6",
-    "webcomponentsjs": "github:webcomponents/webcomponentsjs@0.5.3",
-    "github:jspm/nodelibs-process@0.1.0": {
-      "process": "npm:process@0.10.0"
-    },
-    "npm:core-js@0.4.6": {
-      "process": "github:jspm/nodelibs-process@0.1.0"
-    }
+    "aurelia-html-template-element": "github:aurelia/html-template-element@0.2.0",
+    "aurelia-path": "github:aurelia/path@0.5.0",
+    "core-js": "github:zloirock/core-js@0.8.1",
+    "webcomponentsjs": "github:webcomponents/webcomponentsjs@0.5.3"
   }
 });
 

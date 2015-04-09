@@ -1,3 +1,4 @@
+import core from 'core-js';
 import {TemplateRegistryEntry} from './template-registry-entry';
 
 var hasTemplateElement = ('content' in document.createElement('template'));
@@ -63,7 +64,7 @@ export class Loader {
       HTMLTemplateElement.bootstrap(doc);
     }
 
-    var template = doc.querySelector('template');
+    var template = doc.getElementsByTagName('template')[0];
 
     if(!template){
       throw new Error(`There was no template element found in '${url}'.`);
