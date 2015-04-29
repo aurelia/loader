@@ -20,6 +20,6 @@
     "aurelia-html-template-element": "^0.2.0",
     "aurelia-path": "^0.5.0",
     "core-js": "github:zloirock/core-js",
-    "webcomponentsjs": "github:webcomponents/webcomponentsjs"
+    "webcomponentsjs": "~0.5.2"
   }
 }
