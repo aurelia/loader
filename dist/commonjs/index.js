@@ -1,29 +1,12 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
+exports.__esModule = true;
 
 var _TemplateRegistryEntry$TemplateDependency = require('./template-registry-entry');
 
-Object.defineProperty(exports, 'TemplateRegistryEntry', {
-  enumerable: true,
-  get: function get() {
-    return _TemplateRegistryEntry$TemplateDependency.TemplateRegistryEntry;
-  }
-});
-Object.defineProperty(exports, 'TemplateDependency', {
-  enumerable: true,
-  get: function get() {
-    return _TemplateRegistryEntry$TemplateDependency.TemplateDependency;
-  }
-});
+exports.TemplateRegistryEntry = _TemplateRegistryEntry$TemplateDependency.TemplateRegistryEntry;
+exports.TemplateDependency = _TemplateRegistryEntry$TemplateDependency.TemplateDependency;
 
 var _Loader = require('./loader');
 
-Object.defineProperty(exports, 'Loader', {
-  enumerable: true,
-  get: function get() {
-    return _Loader.Loader;
-  }
-});
+exports.Loader = _Loader.Loader;

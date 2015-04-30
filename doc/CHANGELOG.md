@@ -1,3 +1,16 @@
+## 0.6.0 (2015-04-30)
+
+
+#### Bug Fixes
+
+* **bower.json:** incorrect reference to webcomponentsjs ([682ed683](http://github.com/aurelia/loader/commit/682ed68351dfb5817d5a007de62512af3de63842))
+
+
+#### Features
+
+* **loader:** add text loading abstraction ([3dcd1c2f](http://github.com/aurelia/loader/commit/3dcd1c2faa72ce00eeb3222382092ec578833bf8), closes [#8](http://github.com/aurelia/loader/issues/8))
+
+
 ## 0.5.0 (2015-04-09)
 
 
