@@ -30,6 +30,10 @@ export class Loader {
     throw new Error('Loader must implement loadTemplate(url).');
   }
 
+  loadText(url){
+    throw new Error('Loader must implement loadText(url).');
+  }
+
   getOrCreateTemplateRegistryEntry(id){
     var entry = this.templateRegistry[id];
 
