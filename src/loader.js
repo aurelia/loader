@@ -4,7 +4,9 @@ import {TemplateRegistryEntry} from './template-registry-entry';
 var hasTemplateElement = ('content' in document.createElement('template'));
 
 function importElements(frag, link, callback) {
-  document.head.appendChild(frag);
+  if(frag){
+    document.head.appendChild(frag);
+  }
 
   if(window.Polymer && Polymer.whenReady){
     Polymer.whenReady(callback);
@@ -57,6 +59,26 @@ export class Loader {
     });
   }
 
+  importBundle(link){
+    return new Promise((resolve, reject) => {
+      if(link.import){
+        if(!hasTemplateElement){
+          HTMLTemplateElement.bootstrap(link.import);
+        }
+
+        resolve(link.import);
+      }else{
+        importElements(null, link, () => {
+          if(!hasTemplateElement){
+            HTMLTemplateElement.bootstrap(link.import);
+          }
+
+          resolve(link.import);
+        });
+      }
+    });
+  }
+
   importTemplate(url){
     return this.importDocument(url).then(doc => {
       return this.findTemplate(doc, url);
@@ -75,5 +97,31 @@ export class Loader {
     }
 
     return template;
+  }
+
+  findBundledTemplate(name, entry){
+    if(this.bundle){
+      var found = this.bundle.getElementById(name);
+      if(found){
+        entry.setTemplate(found);
+        return Promise.resolve(true);
+      }
+    }else if(!this.bundleChecked){
+      this.bundleChecked = true;
+
+      var bundleLink = document.querySelector('link[aurelia-view-bundle]');
+      if(bundleLink){
+        return this.importBundle(bundleLink).then(doc => {
+          this.bundle = doc;
+          var found = this.bundle.getElementById(name);
+          if(found){
+            entry.setTemplate(found);
+            return Promise.resolve(true);
+          }
+        });
+      }
+    }
+
+    return Promise.resolve(false);
   }
 }
