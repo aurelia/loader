@@ -1,18 +1,20 @@
 define(['exports', 'core-js', './template-registry-entry'], function (exports, _coreJs, _templateRegistryEntry) {
   'use strict';
 
-  var _interopRequire = function (obj) { return obj && obj.__esModule ? obj['default'] : obj; };
-
-  var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
-
   exports.__esModule = true;
 
-  var _core = _interopRequire(_coreJs);
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+  var _core = _interopRequireDefault(_coreJs);
 
   var hasTemplateElement = ('content' in document.createElement('template'));
 
   function importElements(frag, link, callback) {
-    document.head.appendChild(frag);
+    if (frag) {
+      document.head.appendChild(frag);
+    }
 
     if (window.Polymer && Polymer.whenReady) {
       Polymer.whenReady(callback);
@@ -69,6 +71,26 @@ define(['exports', 'core-js', './template-registry-entry'], function (exports, _
       });
     };
 
+    Loader.prototype.importBundle = function importBundle(link) {
+      return new Promise(function (resolve, reject) {
+        if (link['import']) {
+          if (!hasTemplateElement) {
+            HTMLTemplateElement.bootstrap(link['import']);
+          }
+
+          resolve(link['import']);
+        } else {
+          importElements(null, link, function () {
+            if (!hasTemplateElement) {
+              HTMLTemplateElement.bootstrap(link['import']);
+            }
+
+            resolve(link['import']);
+          });
+        }
+      });
+    };
+
     Loader.prototype.importTemplate = function importTemplate(url) {
       var _this = this;
 
@@ -89,6 +111,34 @@ define(['exports', 'core-js', './template-registry-entry'], function (exports, _
       }
 
       return template;
+    };
+
+    Loader.prototype.findBundledTemplate = function findBundledTemplate(name, entry) {
+      var _this2 = this;
+
+      if (this.bundle) {
+        var found = this.bundle.getElementById(name);
+        if (found) {
+          entry.setTemplate(found);
+          return Promise.resolve(true);
+        }
+      } else if (!this.bundleChecked) {
+        this.bundleChecked = true;
+
+        var bundleLink = document.querySelector('link[aurelia-view-bundle]');
+        if (bundleLink) {
+          return this.importBundle(bundleLink).then(function (doc) {
+            _this2.bundle = doc;
+            var found = _this2.bundle.getElementById(name);
+            if (found) {
+              entry.setTemplate(found);
+              return Promise.resolve(true);
+            }
+          });
+        }
+      }
+
+      return Promise.resolve(false);
     };
 
     return Loader;

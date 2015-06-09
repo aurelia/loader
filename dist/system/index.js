@@ -1,4 +1,6 @@
 System.register(['./template-registry-entry', './loader'], function (_export) {
+  'use strict';
+
   return {
     setters: [function (_templateRegistryEntry) {
       _export('TemplateRegistryEntry', _templateRegistryEntry.TemplateRegistryEntry);
@@ -7,8 +9,6 @@ System.register(['./template-registry-entry', './loader'], function (_export) {
     }, function (_loader) {
       _export('Loader', _loader.Loader);
     }],
-    execute: function () {
-      'use strict';
-    }
+    execute: function () {}
   };
 });

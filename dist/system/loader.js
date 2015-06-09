@@ -1,8 +1,14 @@
 System.register(['core-js', './template-registry-entry'], function (_export) {
-  var core, TemplateRegistryEntry, _classCallCheck, hasTemplateElement, Loader;
+  'use strict';
+
+  var core, TemplateRegistryEntry, hasTemplateElement, Loader;
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
   function importElements(frag, link, callback) {
-    document.head.appendChild(frag);
+    if (frag) {
+      document.head.appendChild(frag);
+    }
 
     if (window.Polymer && Polymer.whenReady) {
       Polymer.whenReady(callback);
@@ -18,10 +24,6 @@ System.register(['core-js', './template-registry-entry'], function (_export) {
       TemplateRegistryEntry = _templateRegistryEntry.TemplateRegistryEntry;
     }],
     execute: function () {
-      'use strict';
-
-      _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
-
       hasTemplateElement = 'content' in document.createElement('template');
 
       Loader = (function () {
@@ -72,6 +74,26 @@ System.register(['core-js', './template-registry-entry'], function (_export) {
           });
         };
 
+        Loader.prototype.importBundle = function importBundle(link) {
+          return new Promise(function (resolve, reject) {
+            if (link['import']) {
+              if (!hasTemplateElement) {
+                HTMLTemplateElement.bootstrap(link['import']);
+              }
+
+              resolve(link['import']);
+            } else {
+              importElements(null, link, function () {
+                if (!hasTemplateElement) {
+                  HTMLTemplateElement.bootstrap(link['import']);
+                }
+
+                resolve(link['import']);
+              });
+            }
+          });
+        };
+
         Loader.prototype.importTemplate = function importTemplate(url) {
           var _this = this;
 
@@ -92,6 +114,34 @@ System.register(['core-js', './template-registry-entry'], function (_export) {
           }
 
           return template;
+        };
+
+        Loader.prototype.findBundledTemplate = function findBundledTemplate(name, entry) {
+          var _this2 = this;
+
+          if (this.bundle) {
+            var found = this.bundle.getElementById(name);
+            if (found) {
+              entry.setTemplate(found);
+              return Promise.resolve(true);
+            }
+          } else if (!this.bundleChecked) {
+            this.bundleChecked = true;
+
+            var bundleLink = document.querySelector('link[aurelia-view-bundle]');
+            if (bundleLink) {
+              return this.importBundle(bundleLink).then(function (doc) {
+                _this2.bundle = doc;
+                var found = _this2.bundle.getElementById(name);
+                if (found) {
+                  entry.setTemplate(found);
+                  return Promise.resolve(true);
+                }
+              });
+            }
+          }
+
+          return Promise.resolve(false);
         };
 
         return Loader;

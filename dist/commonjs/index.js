@@ -2,11 +2,11 @@
 
 exports.__esModule = true;
 
-var _TemplateRegistryEntry$TemplateDependency = require('./template-registry-entry');
+var _templateRegistryEntry = require('./template-registry-entry');
 
-exports.TemplateRegistryEntry = _TemplateRegistryEntry$TemplateDependency.TemplateRegistryEntry;
-exports.TemplateDependency = _TemplateRegistryEntry$TemplateDependency.TemplateDependency;
+exports.TemplateRegistryEntry = _templateRegistryEntry.TemplateRegistryEntry;
+exports.TemplateDependency = _templateRegistryEntry.TemplateDependency;
 
-var _Loader = require('./loader');
+var _loader = require('./loader');
 
-exports.Loader = _Loader.Loader;
+exports.Loader = _loader.Loader;

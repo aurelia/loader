@@ -1,3 +1,11 @@
+## 0.7.0 (2015-06-08)
+
+
+#### Features
+
+* **loader:** add support for view bundles ([8f2c45d6](http://github.com/aurelia/loader/commit/8f2c45d6780d66bcb290cc3cfdec1b8b0eaa9fc4))
+
+
 ## 0.6.0 (2015-04-30)
 
 

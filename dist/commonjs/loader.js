@@ -1,21 +1,23 @@
 'use strict';
 
-var _interopRequireDefault = function (obj) { return obj && obj.__esModule ? obj : { 'default': obj }; };
-
-var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
-
 exports.__esModule = true;
 
-var _core = require('core-js');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _core2 = _interopRequireDefault(_core);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-var _TemplateRegistryEntry = require('./template-registry-entry');
+var _coreJs = require('core-js');
+
+var _coreJs2 = _interopRequireDefault(_coreJs);
+
+var _templateRegistryEntry = require('./template-registry-entry');
 
 var hasTemplateElement = ('content' in document.createElement('template'));
 
 function importElements(frag, link, callback) {
-  document.head.appendChild(frag);
+  if (frag) {
+    document.head.appendChild(frag);
+  }
 
   if (window.Polymer && Polymer.whenReady) {
     Polymer.whenReady(callback);
@@ -51,7 +53,7 @@ var Loader = (function () {
     var entry = this.templateRegistry[id];
 
     if (entry === undefined) {
-      this.templateRegistry[id] = entry = new _TemplateRegistryEntry.TemplateRegistryEntry(id);
+      this.templateRegistry[id] = entry = new _templateRegistryEntry.TemplateRegistryEntry(id);
     }
 
     return entry;
@@ -69,6 +71,26 @@ var Loader = (function () {
       importElements(frag, link, function () {
         return resolve(link['import']);
       });
+    });
+  };
+
+  Loader.prototype.importBundle = function importBundle(link) {
+    return new Promise(function (resolve, reject) {
+      if (link['import']) {
+        if (!hasTemplateElement) {
+          HTMLTemplateElement.bootstrap(link['import']);
+        }
+
+        resolve(link['import']);
+      } else {
+        importElements(null, link, function () {
+          if (!hasTemplateElement) {
+            HTMLTemplateElement.bootstrap(link['import']);
+          }
+
+          resolve(link['import']);
+        });
+      }
     });
   };
 
@@ -92,6 +114,34 @@ var Loader = (function () {
     }
 
     return template;
+  };
+
+  Loader.prototype.findBundledTemplate = function findBundledTemplate(name, entry) {
+    var _this2 = this;
+
+    if (this.bundle) {
+      var found = this.bundle.getElementById(name);
+      if (found) {
+        entry.setTemplate(found);
+        return Promise.resolve(true);
+      }
+    } else if (!this.bundleChecked) {
+      this.bundleChecked = true;
+
+      var bundleLink = document.querySelector('link[aurelia-view-bundle]');
+      if (bundleLink) {
+        return this.importBundle(bundleLink).then(function (doc) {
+          _this2.bundle = doc;
+          var found = _this2.bundle.getElementById(name);
+          if (found) {
+            entry.setTemplate(found);
+            return Promise.resolve(true);
+          }
+        });
+      }
+    }
+
+    return Promise.resolve(false);
   };
 
   return Loader;

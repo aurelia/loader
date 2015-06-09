@@ -1,12 +1,12 @@
 'use strict';
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
-
 exports.__esModule = true;
 
-var _relativeToFile = require('aurelia-path');
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+var _aureliaPath = require('aurelia-path');
 
 var TemplateDependency = function TemplateDependency(src, name) {
   _classCallCheck(this, TemplateDependency);
@@ -52,7 +52,7 @@ var TemplateRegistryEntry = (function () {
         throw new Error('<require> element in ' + this.id + ' has no "from" attribute.');
       }
 
-      this.dependencies[i] = new TemplateDependency(_relativeToFile.relativeToFile(src, id), current.getAttribute('as'));
+      this.dependencies[i] = new TemplateDependency((0, _aureliaPath.relativeToFile)(src, id), current.getAttribute('as'));
 
       if (current.parentNode) {
         current.parentNode.removeChild(current);
