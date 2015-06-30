@@ -1,4 +1,4 @@
-import {Loader} from '../src/index';
+import {Loader} from '../src/loader';
 
 
 describe("the abstract loader", () => {
