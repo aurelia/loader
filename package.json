@@ -20,9 +20,9 @@
   },
   "jspm": {
     "main": "index",
-    "format": "register",
+    "format": "amd",
     "directories": {
-      "lib": "dist/system"
+      "lib": "dist/amd"
     },
     "dependencies": {
       "aurelia-html-template-element": "github:aurelia/html-template-element@^0.2.0",
