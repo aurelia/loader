@@ -55,7 +55,7 @@ define(['exports', 'core-js', 'aurelia-path'], function (exports, _coreJs, _aure
           throw new Error('<require> element in ' + this.id + ' has no "from" attribute.');
         }
 
-        this.dependencies[i] = new TemplateDependency((0, _aureliaPath.relativeToFile)(src, id), current.getAttribute('as'));
+        this.dependencies[i] = new TemplateDependency(_aureliaPath.relativeToFile(src, id), current.getAttribute('as'));
 
         if (current.parentNode) {
           current.parentNode.removeChild(current);
@@ -73,12 +73,12 @@ define(['exports', 'core-js', 'aurelia-path'], function (exports, _coreJs, _aure
 
     _createClass(TemplateRegistryEntry, [{
       key: 'templateIsLoaded',
-      get: function () {
+      get: function get() {
         return this.template !== null;
       }
     }, {
       key: 'isReady',
-      get: function () {
+      get: function get() {
         return this.factory !== null;
       }
     }]);

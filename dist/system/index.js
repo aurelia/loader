@@ -88,12 +88,12 @@ System.register(['core-js', 'aurelia-path'], function (_export) {
 
         _createClass(TemplateRegistryEntry, [{
           key: 'templateIsLoaded',
-          get: function () {
+          get: function get() {
             return this.template !== null;
           }
         }, {
           key: 'isReady',
-          get: function () {
+          get: function get() {
             return this.factory !== null;
           }
         }]);
