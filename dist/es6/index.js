@@ -82,6 +82,7 @@ function importElements(frag, link, callback) {
 export class Loader {
   constructor(){
     this.templateRegistry = {};
+    this.needsBundleCheck = true;
   }
 
   loadModule(id){
@@ -163,26 +164,33 @@ export class Loader {
     return template;
   }
 
+  _tryGetTemplateFromBundle(name, entry){
+    var found = this.bundle.getElementById(name);
+
+    if(found){
+      entry.setTemplate(found);
+      return Promise.resolve(true);
+    }
+
+    return Promise.resolve(false);
+  }
+
   findBundledTemplate(name, entry){
     if(this.bundle){
-      var found = this.bundle.getElementById(name);
-      if(found){
-        entry.setTemplate(found);
-        return Promise.resolve(true);
-      }
-    }else if(!this.bundleChecked){
-      this.bundleChecked = true;
-
+      return this._tryGetTemplateFromBundle(name, entry);
+    } else if(this.onBundleReady){
+      return this.onBundleReady.then(() => this._tryGetTemplateFromBundle(name, entry));
+    } else if(this.needsBundleCheck){
       var bundleLink = document.querySelector('link[aurelia-view-bundle]');
+      this.needsBundleCheck = false;
+
       if(bundleLink){
-        return this.importBundle(bundleLink).then(doc => {
+        this.onBundleReady = this.importBundle(bundleLink).then(doc => {
           this.bundle = doc;
-          var found = this.bundle.getElementById(name);
-          if(found){
-            entry.setTemplate(found);
-            return Promise.resolve(true);
-          }
+          this.onBundleReady = null;
         });
+
+        return this.onBundleReady.then(() => this._tryGetTemplateFromBundle(name, entry));
       }
     }
 

@@ -1,3 +1,11 @@
+### 0.8.1 (2015-07-13)
+
+
+#### Bug Fixes
+
+* **loader:** async problem with bundles views ([3b300e84](http://github.com/aurelia/loader/commit/3b300e845eb71494f5505d9212aae738ed7094a7), closes [#12](http://github.com/aurelia/loader/issues/12))
+
+
 ## 0.8.0 (2015-07-02)
 
 

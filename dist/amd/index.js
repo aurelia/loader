@@ -107,6 +107,7 @@ define(['exports', 'core-js', 'aurelia-path'], function (exports, _coreJs, _aure
       _classCallCheck(this, Loader);
 
       this.templateRegistry = {};
+      this.needsBundleCheck = true;
     }
 
     Loader.prototype.loadModule = function loadModule(id) {
@@ -192,27 +193,38 @@ define(['exports', 'core-js', 'aurelia-path'], function (exports, _coreJs, _aure
       return template;
     };
 
+    Loader.prototype._tryGetTemplateFromBundle = function _tryGetTemplateFromBundle(name, entry) {
+      var found = this.bundle.getElementById(name);
+
+      if (found) {
+        entry.setTemplate(found);
+        return Promise.resolve(true);
+      }
+
+      return Promise.resolve(false);
+    };
+
     Loader.prototype.findBundledTemplate = function findBundledTemplate(name, entry) {
       var _this2 = this;
 
       if (this.bundle) {
-        var found = this.bundle.getElementById(name);
-        if (found) {
-          entry.setTemplate(found);
-          return Promise.resolve(true);
-        }
-      } else if (!this.bundleChecked) {
-        this.bundleChecked = true;
-
+        return this._tryGetTemplateFromBundle(name, entry);
+      } else if (this.onBundleReady) {
+        return this.onBundleReady.then(function () {
+          return _this2._tryGetTemplateFromBundle(name, entry);
+        });
+      } else if (this.needsBundleCheck) {
         var bundleLink = document.querySelector('link[aurelia-view-bundle]');
+        this.needsBundleCheck = false;
+
         if (bundleLink) {
-          return this.importBundle(bundleLink).then(function (doc) {
+          this.onBundleReady = this.importBundle(bundleLink).then(function (doc) {
             _this2.bundle = doc;
-            var found = _this2.bundle.getElementById(name);
-            if (found) {
-              entry.setTemplate(found);
-              return Promise.resolve(true);
-            }
+            _this2.onBundleReady = null;
+          });
+
+          return this.onBundleReady.then(function () {
+            return _this2._tryGetTemplateFromBundle(name, entry);
           });
         }
       }
