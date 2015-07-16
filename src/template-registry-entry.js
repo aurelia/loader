@@ -1,14 +1,15 @@
 import {relativeToFile} from 'aurelia-path';
+import {Origin} from 'aurelia-metadata';
 
 export class TemplateDependency {
-  constructor(src, name){
+  constructor(src:string, name?:string){
     this.src = src;
     this.name = name;
   }
 }
 
 export class TemplateRegistryEntry {
-  constructor(id){
+  constructor(id:string){
     this.id = id;
     this.template = null;
     this.dependencies = null;
@@ -16,15 +17,15 @@ export class TemplateRegistryEntry {
     this.factory = null;
   }
 
-  get templateIsLoaded(){
+  get templateIsLoaded():boolean{
     return this.template !== null;
   }
 
-  get isReady(){
+  get isReady():boolean{
     return this.factory !== null;
   }
 
-  setTemplate(template){
+  setTemplate(template:Element){
     var id = this.id,
         useResources, i, ii, current, src;
 
@@ -52,6 +53,21 @@ export class TemplateRegistryEntry {
       if(current.parentNode){
         current.parentNode.removeChild(current);
       }
+    }
+  }
+
+  addDependency(src:string|Function, name?:string){
+    if(typeof src === 'string'){
+      this.dependencies.push(new TemplateDependency(
+        relativeToFile(src, this.id),
+        name
+      ));
+    }else if(typeof src === 'function'){
+      var origin = Origin.get(src);
+      this.dependencies.push(new TemplateDependency(
+        origin.moduleId,
+        name
+      ));
     }
   }
 
