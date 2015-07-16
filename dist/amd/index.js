@@ -1,4 +1,4 @@
-define(['exports', 'core-js', 'aurelia-path'], function (exports, _coreJs, _aureliaPath) {
+define(['exports', 'core-js', 'aurelia-path', 'aurelia-metadata'], function (exports, _coreJs, _aureliaPath, _aureliaMetadata) {
   'use strict';
 
   exports.__esModule = true;
@@ -60,6 +60,15 @@ define(['exports', 'core-js', 'aurelia-path'], function (exports, _coreJs, _aure
         if (current.parentNode) {
           current.parentNode.removeChild(current);
         }
+      }
+    };
+
+    TemplateRegistryEntry.prototype.addDependency = function addDependency(src, name) {
+      if (typeof src === 'string') {
+        this.dependencies.push(new TemplateDependency(_aureliaPath.relativeToFile(src, this.id), name));
+      } else if (typeof src === 'function') {
+        var origin = _aureliaMetadata.Origin.get(src);
+        this.dependencies.push(new TemplateDependency(origin.moduleId, name));
       }
     };
 

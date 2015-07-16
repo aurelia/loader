@@ -1,7 +1,7 @@
-System.register(['core-js', 'aurelia-path'], function (_export) {
+System.register(['core-js', 'aurelia-path', 'aurelia-metadata'], function (_export) {
   'use strict';
 
-  var core, relativeToFile, TemplateDependency, TemplateRegistryEntry, hasTemplateElement, Loader;
+  var core, relativeToFile, Origin, TemplateDependency, TemplateRegistryEntry, hasTemplateElement, Loader;
 
   var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
@@ -24,6 +24,8 @@ System.register(['core-js', 'aurelia-path'], function (_export) {
       core = _coreJs['default'];
     }, function (_aureliaPath) {
       relativeToFile = _aureliaPath.relativeToFile;
+    }, function (_aureliaMetadata) {
+      Origin = _aureliaMetadata.Origin;
     }],
     execute: function () {
       TemplateDependency = function TemplateDependency(src, name) {
@@ -75,6 +77,15 @@ System.register(['core-js', 'aurelia-path'], function (_export) {
             if (current.parentNode) {
               current.parentNode.removeChild(current);
             }
+          }
+        };
+
+        TemplateRegistryEntry.prototype.addDependency = function addDependency(src, name) {
+          if (typeof src === 'string') {
+            this.dependencies.push(new TemplateDependency(relativeToFile(src, this.id), name));
+          } else if (typeof src === 'function') {
+            var origin = Origin.get(src);
+            this.dependencies.push(new TemplateDependency(origin.moduleId, name));
           }
         };
 

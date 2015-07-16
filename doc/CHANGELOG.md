@@ -1,3 +1,11 @@
+### 0.8.2 (2015-07-16)
+
+
+#### Features
+
+* **template-registry-entry:** allow dynamically adding dependencies ([78bf4984](http://github.com/aurelia/loader/commit/78bf498447c439d936422c2e6b74e72f1d9f9ac3))
+
+
 ### 0.8.1 (2015-07-13)
 
 
@@ -123,4 +131,3 @@
 #### Bug Fixes
 
 * **package:** add missing polyfills ([178f6b08](http://github.com/aurelia/loader/commit/178f6b085deed728e71d72f20dbfde9f41287e1c))
-

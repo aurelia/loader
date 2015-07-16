@@ -25,7 +25,7 @@ export class TemplateRegistryEntry {
     return this.factory !== null;
   }
 
-  setTemplate(template:Element){
+  setTemplate(template:Element):void{
     var id = this.id,
         useResources, i, ii, current, src;
 
@@ -56,7 +56,7 @@ export class TemplateRegistryEntry {
     }
   }
 
-  addDependency(src:string|Function, name?:string){
+  addDependency(src:string|Function, name?:string):void{
     if(typeof src === 'string'){
       this.dependencies.push(new TemplateDependency(
         relativeToFile(src, this.id),
@@ -71,11 +71,11 @@ export class TemplateRegistryEntry {
     }
   }
 
-  setResources(resources){
+  setResources(resources):void{
     this.resources = resources;
   }
 
-  setFactory(factory){
+  setFactory(factory):void{
     this.factory = factory;
   }
 }
