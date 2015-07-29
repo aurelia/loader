@@ -18,7 +18,8 @@
   },
   "dependencies": {
     "aurelia-html-template-element": "^0.2.0",
-    "aurelia-path": "^0.8.0",
+    "aurelia-path": "^0.8.1",
+    "aurelia-metadata": "^0.7.1",
     "core-js": "zloirock/core-js",
     "webcomponentsjs": "~0.6.1"
   }
