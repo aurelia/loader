@@ -2,14 +2,14 @@ import {relativeToFile} from 'aurelia-path';
 import {Origin} from 'aurelia-metadata';
 
 export class TemplateDependency {
-  constructor(src:string, name?:string){
+  constructor(src: string, name?: string){
     this.src = src;
     this.name = name;
   }
 }
 
 export class TemplateRegistryEntry {
-  constructor(id:string){
+  constructor(id: string){
     this.id = id;
     this.template = null;
     this.dependencies = null;
@@ -17,15 +17,15 @@ export class TemplateRegistryEntry {
     this.factory = null;
   }
 
-  get templateIsLoaded():boolean{
+  get templateIsLoaded(): boolean{
     return this.template !== null;
   }
 
-  get isReady():boolean{
+  get isReady(): boolean{
     return this.factory !== null;
   }
 
-  setTemplate(template:Element):void{
+  setTemplate(template: HTMLTemplateElement): void {
     var id = this.id,
         useResources, i, ii, current, src;
 
@@ -56,7 +56,7 @@ export class TemplateRegistryEntry {
     }
   }
 
-  addDependency(src:string|Function, name?:string):void{
+  addDependency(src: string|Function, name?: string): void {
     if(typeof src === 'string'){
       this.dependencies.push(new TemplateDependency(
         relativeToFile(src, this.id),
@@ -71,11 +71,11 @@ export class TemplateRegistryEntry {
     }
   }
 
-  setResources(resources):void{
+  setResources(resources): void {
     this.resources = resources;
   }
 
-  setFactory(factory):void{
+  setFactory(factory): void {
     this.factory = factory;
   }
 }

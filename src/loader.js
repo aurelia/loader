@@ -21,23 +21,23 @@ export class Loader {
     this.needsBundleCheck = true;
   }
 
-  loadModule(id){
+  loadModule(id: string): Proimise<any> {
     throw new Error('Loaders must implement loadModule(id).');
   }
 
-  loadAllModules(ids){
+  loadAllModules(ids: string[]): Promse<any[]> {
     throw new Error('Loader must implement loadAllModules(ids).');
   }
 
-  loadTemplate(url){
+  loadTemplate(url: string): Promise<TemplateRegistryEntry> {
     throw new Error('Loader must implement loadTemplate(url).');
   }
 
-  loadText(url){
+  loadText(url: string): Promise<string> {
     throw new Error('Loader must implement loadText(url).');
   }
 
-  getOrCreateTemplateRegistryEntry(id){
+  getOrCreateTemplateRegistryEntry(id: string): TemplateRegistryEntry {
     var entry = this.templateRegistry[id];
 
     if(entry === undefined){
@@ -47,7 +47,7 @@ export class Loader {
     return entry;
   }
 
-  importDocument(url){
+  importDocument(url: string): Promise<Document> {
     return new Promise((resolve, reject) => {
       var frag = document.createDocumentFragment();
       var link = document.createElement('link');
@@ -60,7 +60,7 @@ export class Loader {
     });
   }
 
-  importBundle(link){
+  importBundle(link: HTMLLinkElement): Promise<Document>{
     return new Promise((resolve, reject) => {
       if(link.import){
         if(!hasTemplateElement){
@@ -80,13 +80,13 @@ export class Loader {
     });
   }
 
-  importTemplate(url){
+  importTemplate(url: string): Promise<HTMLTemplateElement> {
     return this.importDocument(url).then(doc => {
       return this.findTemplate(doc, url);
     });
   }
 
-  findTemplate(doc, url){
+  findTemplate(doc: Document, url: string): HTMLTemplateElement {
     if(!hasTemplateElement){
       HTMLTemplateElement.bootstrap(doc);
     }
@@ -111,7 +111,7 @@ export class Loader {
     return Promise.resolve(false);
   }
 
-  findBundledTemplate(name, entry){
+  findBundledTemplate(name: string, entry: TemplateRegistryEntry): Promise<boolean> {
     if(this.bundle){
       return this._tryGetTemplateFromBundle(name, entry);
     } else if(this.onBundleReady){
