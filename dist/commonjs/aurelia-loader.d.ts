@@ -16,8 +16,8 @@ declare module 'aurelia-loader' {
   }
   export class Loader {
     constructor();
-    loadModule(id: string): Proimise<any>;
-    loadAllModules(ids: string[]): Promse<any[]>;
+    loadModule(id: string): Promise<any>;
+    loadAllModules(ids: string[]): Promise<any[]>;
     loadTemplate(url: string): Promise<TemplateRegistryEntry>;
     loadText(url: string): Promise<string>;
     getOrCreateTemplateRegistryEntry(id: string): TemplateRegistryEntry;

@@ -1,3 +1,9 @@
+### 0.8.5 (2015-08-14)
+
+#### Bug Fixes
+
+* **loader:** Fix typos in type info
+
 ### 0.8.4 (2015-08-14)
 
 
