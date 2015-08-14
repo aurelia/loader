@@ -1,3 +1,11 @@
+### 0.8.7 (2015-08-14)
+
+
+#### Bug Fixes
+
+* **template-registry-entry:** correct types ([c10a7e4f](http://github.com/aurelia/loader/commit/c10a7e4fe844a76211b99867b67fedffac234bd2))
+
+
 ### 0.8.6 (2015-08-14)
 
 

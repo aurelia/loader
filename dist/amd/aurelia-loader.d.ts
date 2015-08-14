@@ -9,7 +9,7 @@ declare module 'aurelia-loader' {
     constructor(id: string);
     templateIsLoaded(): boolean;
     isReady(): boolean;
-    setTemplate(template: HTMLTemplateElement): void;
+    setTemplate(template: Element): void;
     addDependency(src: string | Function, name?: string): void;
     setResources(resources: any): void;
     setFactory(factory: any): void;
