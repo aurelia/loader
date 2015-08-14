@@ -23,8 +23,8 @@ declare module 'aurelia-loader' {
     getOrCreateTemplateRegistryEntry(id: string): TemplateRegistryEntry;
     importDocument(url: string): Promise<Document>;
     importBundle(link: HTMLLinkElement): Promise<Document>;
-    importTemplate(url: string): Promise<HTMLTemplateElement>;
-    findTemplate(doc: Document, url: string): HTMLTemplateElement;
+    importTemplate(url: string): Promise<Element>;
+    findTemplate(doc: Document, url: string): Element;
     findBundledTemplate(name: string, entry: TemplateRegistryEntry): Promise<boolean>;
   }
 }

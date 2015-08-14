@@ -1,3 +1,11 @@
+### 0.8.6 (2015-08-14)
+
+
+#### Bug Fixes
+
+* **loader:** change some types ([3b212821](http://github.com/aurelia/loader/commit/3b21282147f2bb663b6929dd56a64af15dc21e28))
+
+
 ### 0.8.5 (2015-08-14)
 
 #### Bug Fixes

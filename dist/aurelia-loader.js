@@ -160,13 +160,13 @@ export class Loader {
     });
   }
 
-  importTemplate(url: string): Promise<HTMLTemplateElement> {
+  importTemplate(url: string): Promise<Element> {
     return this.importDocument(url).then(doc => {
       return this.findTemplate(doc, url);
     });
   }
 
-  findTemplate(doc: Document, url: string): HTMLTemplateElement {
+  findTemplate(doc: Document, url: string): Element {
     if(!hasTemplateElement){
       HTMLTemplateElement.bootstrap(doc);
     }
