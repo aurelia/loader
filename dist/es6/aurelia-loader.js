@@ -1,16 +1,16 @@
-import core from 'core-js';
+import * as core from 'core-js';
 import {relativeToFile} from 'aurelia-path';
 import {Origin} from 'aurelia-metadata';
 
 export class TemplateDependency {
-  constructor(src:string, name?:string){
+  constructor(src: string, name?: string){
     this.src = src;
     this.name = name;
   }
 }
 
 export class TemplateRegistryEntry {
-  constructor(id:string){
+  constructor(id: string){
     this.id = id;
     this.template = null;
     this.dependencies = null;
@@ -18,15 +18,15 @@ export class TemplateRegistryEntry {
     this.factory = null;
   }
 
-  get templateIsLoaded():boolean{
+  get templateIsLoaded(): boolean{
     return this.template !== null;
   }
 
-  get isReady():boolean{
+  get isReady(): boolean{
     return this.factory !== null;
   }
 
-  setTemplate(template:Element):void{
+  setTemplate(template: HTMLTemplateElement): void {
     var id = this.id,
         useResources, i, ii, current, src;
 
@@ -57,7 +57,7 @@ export class TemplateRegistryEntry {
     }
   }
 
-  addDependency(src:string|Function, name?:string):void{
+  addDependency(src: string|Function, name?: string): void {
     if(typeof src === 'string'){
       this.dependencies.push(new TemplateDependency(
         relativeToFile(src, this.id),
@@ -72,11 +72,11 @@ export class TemplateRegistryEntry {
     }
   }
 
-  setResources(resources):void{
+  setResources(resources): void {
     this.resources = resources;
   }
 
-  setFactory(factory):void{
+  setFactory(factory): void {
     this.factory = factory;
   }
 }
@@ -101,23 +101,23 @@ export class Loader {
     this.needsBundleCheck = true;
   }
 
-  loadModule(id){
+  loadModule(id: string): Proimise<any> {
     throw new Error('Loaders must implement loadModule(id).');
   }
 
-  loadAllModules(ids){
+  loadAllModules(ids: string[]): Promse<any[]> {
     throw new Error('Loader must implement loadAllModules(ids).');
   }
 
-  loadTemplate(url){
+  loadTemplate(url: string): Promise<TemplateRegistryEntry> {
     throw new Error('Loader must implement loadTemplate(url).');
   }
 
-  loadText(url){
+  loadText(url: string): Promise<string> {
     throw new Error('Loader must implement loadText(url).');
   }
 
-  getOrCreateTemplateRegistryEntry(id){
+  getOrCreateTemplateRegistryEntry(id: string): TemplateRegistryEntry {
     var entry = this.templateRegistry[id];
 
     if(entry === undefined){
@@ -127,7 +127,7 @@ export class Loader {
     return entry;
   }
 
-  importDocument(url){
+  importDocument(url: string): Promise<Document> {
     return new Promise((resolve, reject) => {
       var frag = document.createDocumentFragment();
       var link = document.createElement('link');
@@ -140,7 +140,7 @@ export class Loader {
     });
   }
 
-  importBundle(link){
+  importBundle(link: HTMLLinkElement): Promise<Document>{
     return new Promise((resolve, reject) => {
       if(link.import){
         if(!hasTemplateElement){
@@ -160,13 +160,13 @@ export class Loader {
     });
   }
 
-  importTemplate(url){
+  importTemplate(url: string): Promise<HTMLTemplateElement> {
     return this.importDocument(url).then(doc => {
       return this.findTemplate(doc, url);
     });
   }
 
-  findTemplate(doc, url){
+  findTemplate(doc: Document, url: string): HTMLTemplateElement {
     if(!hasTemplateElement){
       HTMLTemplateElement.bootstrap(doc);
     }
@@ -191,7 +191,7 @@ export class Loader {
     return Promise.resolve(false);
   }
 
-  findBundledTemplate(name, entry){
+  findBundledTemplate(name: string, entry: TemplateRegistryEntry): Promise<boolean> {
     if(this.bundle){
       return this._tryGetTemplateFromBundle(name, entry);
     } else if(this.onBundleReady){

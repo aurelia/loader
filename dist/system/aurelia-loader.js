@@ -21,7 +21,7 @@ System.register(['core-js', 'aurelia-path', 'aurelia-metadata'], function (_expo
 
   return {
     setters: [function (_coreJs) {
-      core = _coreJs['default'];
+      core = _coreJs;
     }, function (_aureliaPath) {
       relativeToFile = _aureliaPath.relativeToFile;
     }, function (_aureliaMetadata) {

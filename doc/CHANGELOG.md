@@ -1,3 +1,16 @@
+### 0.8.4 (2015-08-14)
+
+
+#### Bug Fixes
+
+* **loader:** Use correct import for core-js We were previously using `import core from core-j ([70e18d0f](http://github.com/aurelia/loader/commit/70e18d0f0108d4b11588b86c6b4ba964e6410cd9))
+
+
+#### Features
+
+* **all:** add more type info ([5e778549](http://github.com/aurelia/loader/commit/5e778549d5b126bcb263c82216f51d042d6afcd5))
+
+
 ### 0.8.3 (2015-07-29)
 
 * improve output file name
