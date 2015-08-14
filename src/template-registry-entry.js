@@ -25,7 +25,7 @@ export class TemplateRegistryEntry {
     return this.factory !== null;
   }
 
-  setTemplate(template: HTMLTemplateElement): void {
+  setTemplate(template: Element): void {
     var id = this.id,
         useResources, i, ii, current, src;
 
