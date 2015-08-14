@@ -21,11 +21,11 @@ export class Loader {
     this.needsBundleCheck = true;
   }
 
-  loadModule(id: string): Proimise<any> {
+  loadModule(id: string): Promise<any> {
     throw new Error('Loaders must implement loadModule(id).');
   }
 
-  loadAllModules(ids: string[]): Promse<any[]> {
+  loadAllModules(ids: string[]): Promise<any[]> {
     throw new Error('Loader must implement loadAllModules(ids).');
   }
 
