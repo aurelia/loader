@@ -2,7 +2,7 @@ import * as core from 'core-js';
 import {TemplateRegistryEntry} from './template-registry-entry';
 
 interface LoaderPlugin {
-  fetch(address: string, canonicalName: string, id: string): Promise<any>;
+  fetch(address: string): Promise<any>;
 }
 
 export class Loader {
