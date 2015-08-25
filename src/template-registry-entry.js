@@ -9,8 +9,8 @@ export class TemplateDependency {
 }
 
 export class TemplateRegistryEntry {
-  constructor(id: string){
-    this.id = id;
+  constructor(address: string){
+    this.address = address;
     this.template = null;
     this.dependencies = null;
     this.resources = null;
@@ -26,7 +26,7 @@ export class TemplateRegistryEntry {
   }
 
   setTemplate(template: Element): void {
-    var id = this.id,
+    var address = this.address,
         useResources, i, ii, current, src;
 
     this.template = template;
@@ -42,11 +42,11 @@ export class TemplateRegistryEntry {
       src = current.getAttribute('from');
 
       if(!src){
-        throw new Error(`<require> element in ${this.id} has no "from" attribute.`);
+        throw new Error(`<require> element in ${address} has no "from" attribute.`);
       }
 
       this.dependencies[i] = new TemplateDependency(
-        relativeToFile(src, id),
+        relativeToFile(src, address),
         current.getAttribute('as')
       );
 
@@ -59,7 +59,7 @@ export class TemplateRegistryEntry {
   addDependency(src: string|Function, name?: string): void {
     if(typeof src === 'string'){
       this.dependencies.push(new TemplateDependency(
-        relativeToFile(src, this.id),
+        relativeToFile(src, this.address),
         name
       ));
     }else if(typeof src === 'function'){
