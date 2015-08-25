@@ -17,7 +17,7 @@ export class TemplateRegistryEntry {
     this.factory = null;
   }
 
-  get templateIsLoaded(): boolean{
+  get templateIsLoaded(): boolean {
     return this.template !== null;
   }
 

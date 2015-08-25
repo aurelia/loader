@@ -22,7 +22,6 @@ System.config({
     "babel": "npm:babel-core@5.1.13",
     "babel-runtime": "npm:babel-runtime@5.1.13",
     "core-js": "npm:core-js@0.9.18",
-    "webcomponentsjs": "github:webcomponents/webcomponentsjs@0.6.1",
     "github:aurelia/metadata@0.7.3": {
       "core-js": "npm:core-js@0.9.18"
     },
