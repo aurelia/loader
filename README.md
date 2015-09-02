@@ -18,12 +18,14 @@ This library is part of the [Aurelia](http://www.aurelia.io/) platform and conta
 ## Dependencies
 
 * [aurelia-path](https://github.com/aurelia/path)
+* [aurelia-metadata](https://github.com/aurelia/metadata)
 
 ## Used By
 
 * [aurelia-framework](https://github.com/aurelia/framework)
-* [aurelia-loader-systemjs](https://github.com/aurelia/loader-systemjs)
+* [aurelia-loader-default](https://github.com/aurelia/loader-default)
 * [aurelia-templating](https://github.com/aurelia/templating)
+* [aurelia-templating-resources](https://github.com/aurelia/templating-resources)
 
 ## Platform Support
 

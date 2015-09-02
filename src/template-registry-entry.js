@@ -2,14 +2,14 @@ import {relativeToFile} from 'aurelia-path';
 import {Origin} from 'aurelia-metadata';
 
 export class TemplateDependency {
-  constructor(src: string, name?: string){
+  constructor(src: string, name?: string) {
     this.src = src;
     this.name = name;
   }
 }
 
 export class TemplateRegistryEntry {
-  constructor(address: string){
+  constructor(address: string) {
     this.address = address;
     this.template = null;
     this.dependencies = null;
@@ -21,27 +21,29 @@ export class TemplateRegistryEntry {
     return this.template !== null;
   }
 
-  get isReady(): boolean{
+  get isReady(): boolean {
     return this.factory !== null;
   }
 
   setTemplate(template: Element): void {
-    var address = this.address,
-        useResources, i, ii, current, src;
+    let address = this.address;
+    let useResources;
+    let current;
+    let src;
 
     this.template = template;
     useResources = template.content.querySelectorAll('require');
     this.dependencies = new Array(useResources.length);
 
-    if(useResources.length === 0){
+    if (useResources.length === 0) {
       return;
     }
 
-    for(i = 0, ii = useResources.length; i < ii; ++i){
+    for (let i = 0, ii = useResources.length; i < ii; ++i) {
       current = useResources[i];
       src = current.getAttribute('from');
 
-      if(!src){
+      if (!src) {
         throw new Error(`<require> element in ${address} has no "from" attribute.`);
       }
 
@@ -50,20 +52,20 @@ export class TemplateRegistryEntry {
         current.getAttribute('as')
       );
 
-      if(current.parentNode){
+      if (current.parentNode) {
         current.parentNode.removeChild(current);
       }
     }
   }
 
   addDependency(src: string|Function, name?: string): void {
-    if(typeof src === 'string'){
+    if (typeof src === 'string') {
       this.dependencies.push(new TemplateDependency(
         relativeToFile(src, this.address),
         name
       ));
-    }else if(typeof src === 'function'){
-      var origin = Origin.get(src);
+    } else if (typeof src === 'function') {
+      let origin = Origin.get(src);
       this.dependencies.push(new TemplateDependency(
         origin.moduleId,
         name

@@ -1,12 +1,13 @@
+/*eslint no-unused-vars:0*/
 import * as core from 'core-js';
-import {TemplateRegistryEntry} from './template-registry-entry';
+import { TemplateRegistryEntry } from './template-registry-entry';
 
 interface LoaderPlugin {
   fetch(address: string): Promise<any>;
 }
 
 export class Loader {
-  constructor(){
+  constructor() {
     this.templateRegistry = {};
   }
 
@@ -30,14 +31,14 @@ export class Loader {
     throw new Error('Loader must implement applyPluginToUrl(url, pluginName).');
   }
 
-  addPlugin(pluginName: string, implementation: LoaderPlugin){
+  addPlugin(pluginName: string, implementation: LoaderPlugin): void {
     throw new Error('Loader must implement addPlugin(pluginName, implementation).');
   }
 
   getOrCreateTemplateRegistryEntry(id: string): TemplateRegistryEntry {
-    var entry = this.templateRegistry[id];
+    let entry = this.templateRegistry[id];
 
-    if(entry === undefined){
+    if (entry === undefined) {
       this.templateRegistry[id] = entry = new TemplateRegistryEntry(id);
     }
 
