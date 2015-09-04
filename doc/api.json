@@ -81,7 +81,7 @@
               ],
               "type": {
                 "type": "instrinct",
-                "name": "any"
+                "name": "void"
               }
             }
           ]

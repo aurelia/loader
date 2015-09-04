@@ -17,10 +17,10 @@ define(['exports', 'core-js', 'aurelia-path', 'aurelia-metadata'], function (exp
   exports.TemplateDependency = TemplateDependency;
 
   var TemplateRegistryEntry = (function () {
-    function TemplateRegistryEntry(id) {
+    function TemplateRegistryEntry(address) {
       _classCallCheck(this, TemplateRegistryEntry);
 
-      this.id = id;
+      this.address = address;
       this.template = null;
       this.dependencies = null;
       this.resources = null;
@@ -28,12 +28,10 @@ define(['exports', 'core-js', 'aurelia-path', 'aurelia-metadata'], function (exp
     }
 
     TemplateRegistryEntry.prototype.setTemplate = function setTemplate(template) {
-      var id = this.id,
-          useResources,
-          i,
-          ii,
-          current,
-          src;
+      var address = this.address;
+      var useResources = undefined;
+      var current = undefined;
+      var src = undefined;
 
       this.template = template;
       useResources = template.content.querySelectorAll('require');
@@ -43,15 +41,15 @@ define(['exports', 'core-js', 'aurelia-path', 'aurelia-metadata'], function (exp
         return;
       }
 
-      for (i = 0, ii = useResources.length; i < ii; ++i) {
+      for (var i = 0, ii = useResources.length; i < ii; ++i) {
         current = useResources[i];
         src = current.getAttribute('from');
 
         if (!src) {
-          throw new Error('<require> element in ' + this.id + ' has no "from" attribute.');
+          throw new Error('<require> element in ' + address + ' has no "from" attribute.');
         }
 
-        this.dependencies[i] = new TemplateDependency(_aureliaPath.relativeToFile(src, id), current.getAttribute('as'));
+        this.dependencies[i] = new TemplateDependency(_aureliaPath.relativeToFile(src, address), current.getAttribute('as'));
 
         if (current.parentNode) {
           current.parentNode.removeChild(current);
@@ -61,7 +59,7 @@ define(['exports', 'core-js', 'aurelia-path', 'aurelia-metadata'], function (exp
 
     TemplateRegistryEntry.prototype.addDependency = function addDependency(src, name) {
       if (typeof src === 'string') {
-        this.dependencies.push(new TemplateDependency(_aureliaPath.relativeToFile(src, this.id), name));
+        this.dependencies.push(new TemplateDependency(_aureliaPath.relativeToFile(src, this.address), name));
       } else if (typeof src === 'function') {
         var origin = _aureliaMetadata.Origin.get(src);
         this.dependencies.push(new TemplateDependency(origin.moduleId, name));
@@ -93,26 +91,11 @@ define(['exports', 'core-js', 'aurelia-path', 'aurelia-metadata'], function (exp
 
   exports.TemplateRegistryEntry = TemplateRegistryEntry;
 
-  var hasTemplateElement = ('content' in document.createElement('template'));
-
-  function importElements(frag, link, callback) {
-    if (frag) {
-      document.head.appendChild(frag);
-    }
-
-    if (window.Polymer && Polymer.whenReady) {
-      Polymer.whenReady(callback);
-    } else {
-      link.addEventListener('load', callback);
-    }
-  }
-
   var Loader = (function () {
     function Loader() {
       _classCallCheck(this, Loader);
 
       this.templateRegistry = {};
-      this.needsBundleCheck = true;
     }
 
     Loader.prototype.loadModule = function loadModule(id) {
@@ -131,6 +114,14 @@ define(['exports', 'core-js', 'aurelia-path', 'aurelia-metadata'], function (exp
       throw new Error('Loader must implement loadText(url).');
     };
 
+    Loader.prototype.applyPluginToUrl = function applyPluginToUrl(url, pluginName) {
+      throw new Error('Loader must implement applyPluginToUrl(url, pluginName).');
+    };
+
+    Loader.prototype.addPlugin = function addPlugin(pluginName, implementation) {
+      throw new Error('Loader must implement addPlugin(pluginName, implementation).');
+    };
+
     Loader.prototype.getOrCreateTemplateRegistryEntry = function getOrCreateTemplateRegistryEntry(id) {
       var entry = this.templateRegistry[id];
 
@@ -139,102 +130,6 @@ define(['exports', 'core-js', 'aurelia-path', 'aurelia-metadata'], function (exp
       }
 
       return entry;
-    };
-
-    Loader.prototype.importDocument = function importDocument(url) {
-      return new Promise(function (resolve, reject) {
-        var frag = document.createDocumentFragment();
-        var link = document.createElement('link');
-
-        link.rel = 'import';
-        link.href = url;
-        frag.appendChild(link);
-
-        importElements(frag, link, function () {
-          return resolve(link['import']);
-        });
-      });
-    };
-
-    Loader.prototype.importBundle = function importBundle(link) {
-      return new Promise(function (resolve, reject) {
-        if (link['import']) {
-          if (!hasTemplateElement) {
-            HTMLTemplateElement.bootstrap(link['import']);
-          }
-
-          resolve(link['import']);
-        } else {
-          importElements(null, link, function () {
-            if (!hasTemplateElement) {
-              HTMLTemplateElement.bootstrap(link['import']);
-            }
-
-            resolve(link['import']);
-          });
-        }
-      });
-    };
-
-    Loader.prototype.importTemplate = function importTemplate(url) {
-      var _this = this;
-
-      return this.importDocument(url).then(function (doc) {
-        return _this.findTemplate(doc, url);
-      });
-    };
-
-    Loader.prototype.findTemplate = function findTemplate(doc, url) {
-      if (!hasTemplateElement) {
-        HTMLTemplateElement.bootstrap(doc);
-      }
-
-      var template = doc.getElementsByTagName('template')[0];
-
-      if (!template) {
-        throw new Error('There was no template element found in \'' + url + '\'.');
-      }
-
-      return template;
-    };
-
-    Loader.prototype._tryGetTemplateFromBundle = function _tryGetTemplateFromBundle(name, entry) {
-      var found = this.bundle.getElementById(name);
-
-      if (found) {
-        entry.setTemplate(found);
-        return Promise.resolve(true);
-      }
-
-      return Promise.resolve(false);
-    };
-
-    Loader.prototype.findBundledTemplate = function findBundledTemplate(name, entry) {
-      var _this2 = this;
-
-      if (this.bundle) {
-        return this._tryGetTemplateFromBundle(name, entry);
-      } else if (this.onBundleReady) {
-        return this.onBundleReady.then(function () {
-          return _this2._tryGetTemplateFromBundle(name, entry);
-        });
-      } else if (this.needsBundleCheck) {
-        var bundleLink = document.querySelector('link[aurelia-view-bundle]');
-        this.needsBundleCheck = false;
-
-        if (bundleLink) {
-          this.onBundleReady = this.importBundle(bundleLink).then(function (doc) {
-            _this2.bundle = doc;
-            _this2.onBundleReady = null;
-          });
-
-          return this.onBundleReady.then(function () {
-            return _this2._tryGetTemplateFromBundle(name, entry);
-          });
-        }
-      }
-
-      return Promise.resolve(false);
     };
 
     return Loader;

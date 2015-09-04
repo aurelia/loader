@@ -3,68 +3,70 @@ import {relativeToFile} from 'aurelia-path';
 import {Origin} from 'aurelia-metadata';
 
 export class TemplateDependency {
-  constructor(src: string, name?: string){
+  constructor(src: string, name?: string) {
     this.src = src;
     this.name = name;
   }
 }
 
 export class TemplateRegistryEntry {
-  constructor(id: string){
-    this.id = id;
+  constructor(address: string) {
+    this.address = address;
     this.template = null;
     this.dependencies = null;
     this.resources = null;
     this.factory = null;
   }
 
-  get templateIsLoaded(): boolean{
+  get templateIsLoaded(): boolean {
     return this.template !== null;
   }
 
-  get isReady(): boolean{
+  get isReady(): boolean {
     return this.factory !== null;
   }
 
   setTemplate(template: Element): void {
-    var id = this.id,
-        useResources, i, ii, current, src;
+    let address = this.address;
+    let useResources;
+    let current;
+    let src;
 
     this.template = template;
     useResources = template.content.querySelectorAll('require');
     this.dependencies = new Array(useResources.length);
 
-    if(useResources.length === 0){
+    if (useResources.length === 0) {
       return;
     }
 
-    for(i = 0, ii = useResources.length; i < ii; ++i){
+    for (let i = 0, ii = useResources.length; i < ii; ++i) {
       current = useResources[i];
       src = current.getAttribute('from');
 
-      if(!src){
-        throw new Error(`<require> element in ${this.id} has no "from" attribute.`);
+      if (!src) {
+        throw new Error(`<require> element in ${address} has no "from" attribute.`);
       }
 
       this.dependencies[i] = new TemplateDependency(
-        relativeToFile(src, id),
+        relativeToFile(src, address),
         current.getAttribute('as')
       );
 
-      if(current.parentNode){
+      if (current.parentNode) {
         current.parentNode.removeChild(current);
       }
     }
   }
 
   addDependency(src: string|Function, name?: string): void {
-    if(typeof src === 'string'){
+    if (typeof src === 'string') {
       this.dependencies.push(new TemplateDependency(
-        relativeToFile(src, this.id),
+        relativeToFile(src, this.address),
         name
       ));
-    }else if(typeof src === 'function'){
-      var origin = Origin.get(src);
+    } else if (typeof src === 'function') {
+      let origin = Origin.get(src);
       this.dependencies.push(new TemplateDependency(
         origin.moduleId,
         name
@@ -81,24 +83,14 @@ export class TemplateRegistryEntry {
   }
 }
 
-var hasTemplateElement = ('content' in document.createElement('template'));
-
-function importElements(frag, link, callback) {
-  if(frag){
-    document.head.appendChild(frag);
-  }
-
-  if(window.Polymer && Polymer.whenReady){
-    Polymer.whenReady(callback);
-  }else{
-    link.addEventListener('load', callback);
-  }
+/*eslint no-unused-vars:0*/
+interface LoaderPlugin {
+  fetch(address: string): Promise<any>;
 }
 
 export class Loader {
-  constructor(){
+  constructor() {
     this.templateRegistry = {};
-    this.needsBundleCheck = true;
   }
 
   loadModule(id: string): Promise<any> {
@@ -117,99 +109,21 @@ export class Loader {
     throw new Error('Loader must implement loadText(url).');
   }
 
-  getOrCreateTemplateRegistryEntry(id: string): TemplateRegistryEntry {
-    var entry = this.templateRegistry[id];
+  applyPluginToUrl(url: string, pluginName: string): string {
+    throw new Error('Loader must implement applyPluginToUrl(url, pluginName).');
+  }
 
-    if(entry === undefined){
+  addPlugin(pluginName: string, implementation: LoaderPlugin): void {
+    throw new Error('Loader must implement addPlugin(pluginName, implementation).');
+  }
+
+  getOrCreateTemplateRegistryEntry(id: string): TemplateRegistryEntry {
+    let entry = this.templateRegistry[id];
+
+    if (entry === undefined) {
       this.templateRegistry[id] = entry = new TemplateRegistryEntry(id);
     }
 
     return entry;
-  }
-
-  importDocument(url: string): Promise<Document> {
-    return new Promise((resolve, reject) => {
-      var frag = document.createDocumentFragment();
-      var link = document.createElement('link');
-
-      link.rel = 'import';
-      link.href = url;
-      frag.appendChild(link);
-
-      importElements(frag, link, () => resolve(link.import));
-    });
-  }
-
-  importBundle(link: HTMLLinkElement): Promise<Document>{
-    return new Promise((resolve, reject) => {
-      if(link.import){
-        if(!hasTemplateElement){
-          HTMLTemplateElement.bootstrap(link.import);
-        }
-
-        resolve(link.import);
-      }else{
-        importElements(null, link, () => {
-          if(!hasTemplateElement){
-            HTMLTemplateElement.bootstrap(link.import);
-          }
-
-          resolve(link.import);
-        });
-      }
-    });
-  }
-
-  importTemplate(url: string): Promise<Element> {
-    return this.importDocument(url).then(doc => {
-      return this.findTemplate(doc, url);
-    });
-  }
-
-  findTemplate(doc: Document, url: string): Element {
-    if(!hasTemplateElement){
-      HTMLTemplateElement.bootstrap(doc);
-    }
-
-    var template = doc.getElementsByTagName('template')[0];
-
-    if(!template){
-      throw new Error(`There was no template element found in '${url}'.`);
-    }
-
-    return template;
-  }
-
-  _tryGetTemplateFromBundle(name, entry){
-    var found = this.bundle.getElementById(name);
-
-    if(found){
-      entry.setTemplate(found);
-      return Promise.resolve(true);
-    }
-
-    return Promise.resolve(false);
-  }
-
-  findBundledTemplate(name: string, entry: TemplateRegistryEntry): Promise<boolean> {
-    if(this.bundle){
-      return this._tryGetTemplateFromBundle(name, entry);
-    } else if(this.onBundleReady){
-      return this.onBundleReady.then(() => this._tryGetTemplateFromBundle(name, entry));
-    } else if(this.needsBundleCheck){
-      var bundleLink = document.querySelector('link[aurelia-view-bundle]');
-      this.needsBundleCheck = false;
-
-      if(bundleLink){
-        this.onBundleReady = this.importBundle(bundleLink).then(doc => {
-          this.bundle = doc;
-          this.onBundleReady = null;
-        });
-
-        return this.onBundleReady.then(() => this._tryGetTemplateFromBundle(name, entry));
-      }
-    }
-
-    return Promise.resolve(false);
   }
 }

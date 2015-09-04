@@ -1,3 +1,19 @@
+## 0.9.0 (2015-09-04)
+
+
+#### Bug Fixes
+
+* **build:** update linting, testing and tools ([3cba198f](http://github.com/aurelia/loader/commit/3cba198f9faedbbcd39a91f7dc212ef4e2236e0f))
+* **loader:** correct the LoaderPlugin interface defintion ([cd07a012](http://github.com/aurelia/loader/commit/cd07a012974149970e21d0599993823c7203f0f0))
+* **template-registry0entry:** changed property from id to address ([91cc7a0f](http://github.com/aurelia/loader/commit/91cc7a0f919edf7e7a5e59dedd3dd2b9c668aa4f))
+
+
+#### Features
+
+* **all:** remove html imports and add generic loader plugin api ([95c9fc5e](http://github.com/aurelia/loader/commit/95c9fc5e2ad23fa9251234f4667d35e5a4786211))
+* **docs:** generate api.json from .d.ts file ([57db0717](http://github.com/aurelia/loader/commit/57db071749e41e4a74d878a61abecf0dea2afd0c))
+
+
 ### 0.8.7 (2015-08-14)
 
 
