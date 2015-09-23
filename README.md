@@ -13,8 +13,6 @@ This library is part of the [Aurelia](http://www.aurelia.io/) platform and conta
 
 * If targeting IE, [aurelia-html-template-element](https://github.com/aurelia/html-template-element) is required.
 
-* If not targeting Chrome, the HTMLImports polyfill from [webcomponentsjs](https://github.com/webcomponents/webcomponentsjs) is required. Note that you may also substitue with the entire `webcomponents-lite.js` or `webcomponents.js` polyfills. On top of this you may also add `polymer.html` if using polymer elements is required for your scenario.
-
 ## Dependencies
 
 * [aurelia-path](https://github.com/aurelia/path)

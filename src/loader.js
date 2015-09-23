@@ -1,6 +1,6 @@
 /*eslint no-unused-vars:0*/
 import * as core from 'core-js';
-import { TemplateRegistryEntry } from './template-registry-entry';
+import {TemplateRegistryEntry} from './template-registry-entry';
 
 interface LoaderPlugin {
   fetch(address: string): Promise<any>;
@@ -9,6 +9,14 @@ interface LoaderPlugin {
 export class Loader {
   constructor() {
     this.templateRegistry = {};
+  }
+
+  map(id: string, source: string): void {
+    throw new Error('Loaders must implement map(id, source).');
+  }
+
+  normalizeSync(moduleId: string, relativeTo: string): string {
+    throw new Error('Loaders must implement normalizeSync(moduleId, relativeTo).');
   }
 
   loadModule(id: string): Promise<any> {
