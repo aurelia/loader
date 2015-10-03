@@ -1,5 +1,5 @@
 /*eslint no-unused-vars:0*/
-import * as core from 'core-js';
+import 'core-js';
 import {TemplateRegistryEntry} from './template-registry-entry';
 
 interface LoaderPlugin {
