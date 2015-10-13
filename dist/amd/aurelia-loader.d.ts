@@ -1,5 +1,5 @@
 declare module 'aurelia-loader' {
-  import * as core from 'core-js';
+  import 'core-js';
   import { relativeToFile }  from 'aurelia-path';
   import { Origin }  from 'aurelia-metadata';
   
@@ -12,8 +12,8 @@ declare module 'aurelia-loader' {
   }
   export class TemplateRegistryEntry {
     constructor(address: string);
-    templateIsLoaded(): boolean;
-    isReady(): boolean;
+    templateIsLoaded: boolean;
+    isReady: boolean;
     setTemplate(template: Element): void;
     addDependency(src: string | Function, name?: string): void;
     setResources(resources: any): void;
@@ -21,6 +21,8 @@ declare module 'aurelia-loader' {
   }
   export class Loader {
     constructor();
+    map(id: string, source: string): void;
+    normalizeSync(moduleId: string, relativeTo: string): string;
     loadModule(id: string): Promise<any>;
     loadAllModules(ids: string[]): Promise<any[]>;
     loadTemplate(url: string): Promise<TemplateRegistryEntry>;

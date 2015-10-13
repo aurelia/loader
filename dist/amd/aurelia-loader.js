@@ -98,6 +98,14 @@ define(['exports', 'core-js', 'aurelia-path', 'aurelia-metadata'], function (exp
       this.templateRegistry = {};
     }
 
+    Loader.prototype.map = function map(id, source) {
+      throw new Error('Loaders must implement map(id, source).');
+    };
+
+    Loader.prototype.normalizeSync = function normalizeSync(moduleId, relativeTo) {
+      throw new Error('Loaders must implement normalizeSync(moduleId, relativeTo).');
+    };
+
     Loader.prototype.loadModule = function loadModule(id) {
       throw new Error('Loaders must implement loadModule(id).');
     };

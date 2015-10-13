@@ -4,13 +4,9 @@ exports.__esModule = true;
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-var _coreJs = require('core-js');
-
-var core = _interopRequireWildcard(_coreJs);
+require('core-js');
 
 var _aureliaPath = require('aurelia-path');
 
@@ -106,6 +102,14 @@ var Loader = (function () {
 
     this.templateRegistry = {};
   }
+
+  Loader.prototype.map = function map(id, source) {
+    throw new Error('Loaders must implement map(id, source).');
+  };
+
+  Loader.prototype.normalizeSync = function normalizeSync(moduleId, relativeTo) {
+    throw new Error('Loaders must implement normalizeSync(moduleId, relativeTo).');
+  };
 
   Loader.prototype.loadModule = function loadModule(id) {
     throw new Error('Loaders must implement loadModule(id).');
