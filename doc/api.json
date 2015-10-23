@@ -6,40 +6,49 @@
   "flags": {},
   "children": [
     {
-      "id": 31,
+      "id": 34,
       "name": "Loader",
       "kind": 128,
       "kindString": "Class",
       "flags": {
         "isExported": true
       },
+      "comment": {
+        "shortText": "A generic resource loader, for loading modules, html, css and more."
+      },
       "children": [
         {
-          "id": 32,
+          "id": 35,
           "name": "constructor",
           "kind": 512,
           "kindString": "Constructor",
           "flags": {
             "isExported": true
           },
+          "comment": {
+            "shortText": "Creates an instance of Loader."
+          },
           "signatures": [
             {
-              "id": 33,
+              "id": 36,
               "name": "new Loader",
               "kind": 16384,
               "kindString": "Constructor signature",
               "flags": {},
+              "comment": {
+                "shortText": "Creates an instance of Loader."
+              },
               "type": {
                 "type": "reference",
                 "name": "Loader",
-                "id": 31,
+                "id": 34,
                 "moduleName": "\"aurelia-loader\""
               }
             }
           ]
         },
         {
-          "id": 58,
+          "id": 61,
           "name": "addPlugin",
           "kind": 2048,
           "kindString": "Method",
@@ -48,29 +57,38 @@
           },
           "signatures": [
             {
-              "id": 59,
+              "id": 62,
               "name": "addPlugin",
               "kind": 4096,
               "kindString": "Call signature",
               "flags": {},
+              "comment": {
+                "shortText": "Registers a plugin with the loader."
+              },
               "parameters": [
                 {
-                  "id": 60,
+                  "id": 63,
                   "name": "pluginName",
                   "kind": 32768,
                   "kindString": "Parameter",
                   "flags": {},
+                  "comment": {
+                    "text": "The name of the plugin."
+                  },
                   "type": {
                     "type": "instrinct",
                     "name": "string"
                   }
                 },
                 {
-                  "id": 61,
+                  "id": 64,
                   "name": "implementation",
                   "kind": 32768,
                   "kindString": "Parameter",
                   "flags": {},
+                  "comment": {
+                    "text": "The plugin implementation.\n"
+                  },
                   "type": {
                     "type": "reference",
                     "name": "LoaderPlugin",
@@ -87,7 +105,7 @@
           ]
         },
         {
-          "id": 54,
+          "id": 57,
           "name": "applyPluginToUrl",
           "kind": 2048,
           "kindString": "Method",
@@ -96,29 +114,39 @@
           },
           "signatures": [
             {
-              "id": 55,
+              "id": 58,
               "name": "applyPluginToUrl",
               "kind": 4096,
               "kindString": "Call signature",
               "flags": {},
+              "comment": {
+                "shortText": "Alters a module id so that it includes a plugin loader.",
+                "returns": "The plugin-based module id.\n"
+              },
               "parameters": [
                 {
-                  "id": 56,
+                  "id": 59,
                   "name": "url",
                   "kind": 32768,
                   "kindString": "Parameter",
                   "flags": {},
+                  "comment": {
+                    "text": "The url of the module to load."
+                  },
                   "type": {
                     "type": "instrinct",
                     "name": "string"
                   }
                 },
                 {
-                  "id": 57,
+                  "id": 60,
                   "name": "pluginName",
                   "kind": 32768,
                   "kindString": "Parameter",
                   "flags": {},
+                  "comment": {
+                    "text": "The plugin to apply to the module id."
+                  },
                   "type": {
                     "type": "instrinct",
                     "name": "string"
@@ -133,7 +161,7 @@
           ]
         },
         {
-          "id": 62,
+          "id": 65,
           "name": "getOrCreateTemplateRegistryEntry",
           "kind": 2048,
           "kindString": "Method",
@@ -142,18 +170,25 @@
           },
           "signatures": [
             {
-              "id": 63,
+              "id": 66,
               "name": "getOrCreateTemplateRegistryEntry",
               "kind": 4096,
               "kindString": "Call signature",
               "flags": {},
+              "comment": {
+                "shortText": "Gets or creates a TemplateRegistryEntry for the provided id.",
+                "returns": "The located or created TemplateRegistryEntry.\n"
+              },
               "parameters": [
                 {
-                  "id": 64,
+                  "id": 67,
                   "name": "id",
                   "kind": 32768,
                   "kindString": "Parameter",
                   "flags": {},
+                  "comment": {
+                    "text": "The id of the template registry entry."
+                  },
                   "type": {
                     "type": "instrinct",
                     "name": "string"
@@ -163,14 +198,14 @@
               "type": {
                 "type": "reference",
                 "name": "TemplateRegistryEntry",
-                "id": 12,
+                "id": 14,
                 "moduleName": "\"aurelia-loader\""
               }
             }
           ]
         },
         {
-          "id": 45,
+          "id": 48,
           "name": "loadAllModules",
           "kind": 2048,
           "kindString": "Method",
@@ -179,18 +214,25 @@
           },
           "signatures": [
             {
-              "id": 46,
+              "id": 49,
               "name": "loadAllModules",
               "kind": 4096,
               "kindString": "Call signature",
               "flags": {},
+              "comment": {
+                "shortText": "Loads a collection of modules.",
+                "returns": "A Promise for an array of loaded modules.\n"
+              },
               "parameters": [
                 {
-                  "id": 47,
+                  "id": 50,
                   "name": "ids",
                   "kind": 32768,
                   "kindString": "Parameter",
                   "flags": {},
+                  "comment": {
+                    "text": "The set of module ids to load."
+                  },
                   "type": {
                     "type": "instrinct",
                     "isArray": true,
@@ -213,7 +255,7 @@
           ]
         },
         {
-          "id": 42,
+          "id": 45,
           "name": "loadModule",
           "kind": 2048,
           "kindString": "Method",
@@ -222,18 +264,25 @@
           },
           "signatures": [
             {
-              "id": 43,
+              "id": 46,
               "name": "loadModule",
               "kind": 4096,
               "kindString": "Call signature",
               "flags": {},
+              "comment": {
+                "shortText": "Loads a module.",
+                "returns": "A Promise for the loaded module.\n"
+              },
               "parameters": [
                 {
-                  "id": 44,
+                  "id": 47,
                   "name": "id",
                   "kind": 32768,
                   "kindString": "Parameter",
                   "flags": {},
+                  "comment": {
+                    "text": "The module id to normalize."
+                  },
                   "type": {
                     "type": "instrinct",
                     "name": "string"
@@ -254,7 +303,7 @@
           ]
         },
         {
-          "id": 48,
+          "id": 51,
           "name": "loadTemplate",
           "kind": 2048,
           "kindString": "Method",
@@ -263,18 +312,25 @@
           },
           "signatures": [
             {
-              "id": 49,
+              "id": 52,
               "name": "loadTemplate",
               "kind": 4096,
               "kindString": "Call signature",
               "flags": {},
+              "comment": {
+                "shortText": "Loads a template.",
+                "returns": "A Promise for a TemplateRegistryEntry containing the template.\n"
+              },
               "parameters": [
                 {
-                  "id": 50,
+                  "id": 53,
                   "name": "url",
                   "kind": 32768,
                   "kindString": "Parameter",
                   "flags": {},
+                  "comment": {
+                    "text": "The url of the template to load."
+                  },
                   "type": {
                     "type": "instrinct",
                     "name": "string"
@@ -288,7 +344,7 @@
                   {
                     "type": "reference",
                     "name": "TemplateRegistryEntry",
-                    "id": 12
+                    "id": 14
                   }
                 ]
               }
@@ -296,7 +352,7 @@
           ]
         },
         {
-          "id": 51,
+          "id": 54,
           "name": "loadText",
           "kind": 2048,
           "kindString": "Method",
@@ -305,18 +361,25 @@
           },
           "signatures": [
             {
-              "id": 52,
+              "id": 55,
               "name": "loadText",
               "kind": 4096,
               "kindString": "Call signature",
               "flags": {},
+              "comment": {
+                "shortText": "Loads a text-based resource.",
+                "returns": "A Promise for text content.\n"
+              },
               "parameters": [
                 {
-                  "id": 53,
+                  "id": 56,
                   "name": "url",
                   "kind": 32768,
                   "kindString": "Parameter",
                   "flags": {},
+                  "comment": {
+                    "text": "The url of the text file to load."
+                  },
                   "type": {
                     "type": "instrinct",
                     "name": "string"
@@ -337,7 +400,7 @@
           ]
         },
         {
-          "id": 34,
+          "id": 37,
           "name": "map",
           "kind": 2048,
           "kindString": "Method",
@@ -346,29 +409,38 @@
           },
           "signatures": [
             {
-              "id": 35,
+              "id": 38,
               "name": "map",
               "kind": 4096,
               "kindString": "Call signature",
               "flags": {},
+              "comment": {
+                "shortText": "Maps a module id to a source."
+              },
               "parameters": [
                 {
-                  "id": 36,
+                  "id": 39,
                   "name": "id",
                   "kind": 32768,
                   "kindString": "Parameter",
                   "flags": {},
+                  "comment": {
+                    "text": "The module id."
+                  },
                   "type": {
                     "type": "instrinct",
                     "name": "string"
                   }
                 },
                 {
-                  "id": 37,
+                  "id": 40,
                   "name": "source",
                   "kind": 32768,
                   "kindString": "Parameter",
                   "flags": {},
+                  "comment": {
+                    "text": "The source to map the module to.\n"
+                  },
                   "type": {
                     "type": "instrinct",
                     "name": "string"
@@ -383,7 +455,7 @@
           ]
         },
         {
-          "id": 38,
+          "id": 41,
           "name": "normalizeSync",
           "kind": 2048,
           "kindString": "Method",
@@ -392,29 +464,39 @@
           },
           "signatures": [
             {
-              "id": 39,
+              "id": 42,
               "name": "normalizeSync",
               "kind": 4096,
               "kindString": "Call signature",
               "flags": {},
+              "comment": {
+                "shortText": "Normalizes a module id.",
+                "returns": "The normalized module id.\n"
+              },
               "parameters": [
                 {
-                  "id": 40,
+                  "id": 43,
                   "name": "moduleId",
                   "kind": 32768,
                   "kindString": "Parameter",
                   "flags": {},
+                  "comment": {
+                    "text": "The module id to normalize."
+                  },
                   "type": {
                     "type": "instrinct",
                     "name": "string"
                   }
                 },
                 {
-                  "id": 41,
+                  "id": 44,
                   "name": "relativeTo",
                   "kind": 32768,
                   "kindString": "Parameter",
                   "flags": {},
+                  "comment": {
+                    "text": "What the module id should be normalized relative to."
+                  },
                   "type": {
                     "type": "instrinct",
                     "name": "string"
@@ -434,22 +516,22 @@
           "title": "Constructors",
           "kind": 512,
           "children": [
-            32
+            35
           ]
         },
         {
           "title": "Methods",
           "kind": 2048,
           "children": [
-            58,
-            54,
-            62,
-            45,
-            42,
+            61,
+            57,
+            65,
             48,
+            45,
             51,
-            34,
-            38
+            54,
+            37,
+            41
           ]
         }
       ]
@@ -462,41 +544,56 @@
       "flags": {
         "isExported": true
       },
+      "comment": {
+        "shortText": "Represents a dependency of a template."
+      },
       "children": [
         {
-          "id": 8,
+          "id": 10,
           "name": "constructor",
           "kind": 512,
           "kindString": "Constructor",
           "flags": {
             "isExported": true
           },
+          "comment": {
+            "shortText": "Creates a template dependency."
+          },
           "signatures": [
             {
-              "id": 9,
+              "id": 11,
               "name": "new TemplateDependency",
               "kind": 16384,
               "kindString": "Constructor signature",
               "flags": {},
+              "comment": {
+                "shortText": "Creates a template dependency."
+              },
               "parameters": [
                 {
-                  "id": 10,
+                  "id": 12,
                   "name": "src",
                   "kind": 32768,
                   "kindString": "Parameter",
                   "flags": {},
+                  "comment": {
+                    "shortText": "The source of the dependency."
+                  },
                   "type": {
                     "type": "instrinct",
                     "name": "string"
                   }
                 },
                 {
-                  "id": 11,
+                  "id": 13,
                   "name": "name",
                   "kind": 32768,
                   "kindString": "Parameter",
                   "flags": {
                     "isOptional": true
+                  },
+                  "comment": {
+                    "shortText": "The local name of the src when used in the template.\n"
                   },
                   "type": {
                     "type": "instrinct",
@@ -512,6 +609,38 @@
               }
             }
           ]
+        },
+        {
+          "id": 9,
+          "name": "name",
+          "kind": 1024,
+          "kindString": "Property",
+          "flags": {
+            "isExported": true
+          },
+          "comment": {
+            "shortText": "The local name of the src when used in the template."
+          },
+          "type": {
+            "type": "instrinct",
+            "name": "string"
+          }
+        },
+        {
+          "id": 8,
+          "name": "src",
+          "kind": 1024,
+          "kindString": "Property",
+          "flags": {
+            "isExported": true
+          },
+          "comment": {
+            "shortText": "The source of the dependency."
+          },
+          "type": {
+            "type": "instrinct",
+            "name": "string"
+          }
         }
       ],
       "groups": [
@@ -519,42 +648,62 @@
           "title": "Constructors",
           "kind": 512,
           "children": [
+            10
+          ]
+        },
+        {
+          "title": "Properties",
+          "kind": 1024,
+          "children": [
+            9,
             8
           ]
         }
       ]
     },
     {
-      "id": 12,
+      "id": 14,
       "name": "TemplateRegistryEntry",
       "kind": 128,
       "kindString": "Class",
       "flags": {
         "isExported": true
       },
+      "comment": {
+        "shortText": "Represents an entry in the template registry."
+      },
       "children": [
         {
-          "id": 13,
+          "id": 16,
           "name": "constructor",
           "kind": 512,
           "kindString": "Constructor",
           "flags": {
             "isExported": true
           },
+          "comment": {
+            "shortText": "Creates an instance of TemplateRegistryEntry."
+          },
           "signatures": [
             {
-              "id": 14,
+              "id": 17,
               "name": "new TemplateRegistryEntry",
               "kind": 16384,
               "kindString": "Constructor signature",
               "flags": {},
+              "comment": {
+                "shortText": "Creates an instance of TemplateRegistryEntry."
+              },
               "parameters": [
                 {
-                  "id": 15,
+                  "id": 18,
                   "name": "address",
                   "kind": 32768,
                   "kindString": "Parameter",
                   "flags": {},
+                  "comment": {
+                    "shortText": "The address of the template that this entry represents.\n"
+                  },
                   "type": {
                     "type": "instrinct",
                     "name": "string"
@@ -564,32 +713,38 @@
               "type": {
                 "type": "reference",
                 "name": "TemplateRegistryEntry",
-                "id": 12,
+                "id": 14,
                 "moduleName": "\"aurelia-loader\""
               }
             }
           ]
         },
         {
-          "id": 17,
+          "id": 15,
+          "name": "address",
+          "kind": 1024,
+          "kindString": "Property",
+          "flags": {
+            "isExported": true
+          },
+          "comment": {
+            "shortText": "The address of the template that this entry represents."
+          },
+          "type": {
+            "type": "instrinct",
+            "name": "string"
+          }
+        },
+        {
+          "id": 20,
           "name": "isReady",
           "kind": 1024,
           "kindString": "Property",
           "flags": {
             "isExported": true
           },
-          "type": {
-            "type": "instrinct",
-            "name": "boolean"
-          }
-        },
-        {
-          "id": 16,
-          "name": "templateIsLoaded",
-          "kind": 1024,
-          "kindString": "Property",
-          "flags": {
-            "isExported": true
+          "comment": {
+            "shortText": "Indicates whether the factory is ready to be used to create instances of the associated template."
           },
           "type": {
             "type": "instrinct",
@@ -597,7 +752,23 @@
           }
         },
         {
-          "id": 21,
+          "id": 19,
+          "name": "templateIsLoaded",
+          "kind": 1024,
+          "kindString": "Property",
+          "flags": {
+            "isExported": true
+          },
+          "comment": {
+            "shortText": "Indicates whether or not the associated template is loaded ."
+          },
+          "type": {
+            "type": "instrinct",
+            "name": "boolean"
+          }
+        },
+        {
+          "id": 24,
           "name": "addDependency",
           "kind": 2048,
           "kindString": "Method",
@@ -606,18 +777,24 @@
           },
           "signatures": [
             {
-              "id": 22,
+              "id": 25,
               "name": "addDependency",
               "kind": 4096,
               "kindString": "Call signature",
               "flags": {},
+              "comment": {
+                "shortText": "Adds a dependency to this template registry entry."
+              },
               "parameters": [
                 {
-                  "id": 23,
+                  "id": 26,
                   "name": "src",
                   "kind": 32768,
                   "kindString": "Parameter",
                   "flags": {},
+                  "comment": {
+                    "text": "The dependency instance or a relative path to its module."
+                  },
                   "type": {
                     "type": "union",
                     "types": [
@@ -633,12 +810,15 @@
                   }
                 },
                 {
-                  "id": 24,
+                  "id": 27,
                   "name": "name",
                   "kind": 32768,
                   "kindString": "Parameter",
                   "flags": {
                     "isOptional": true
+                  },
+                  "comment": {
+                    "text": "An optional local name by which this dependency is used in the template.\n"
                   },
                   "type": {
                     "type": "instrinct",
@@ -654,7 +834,7 @@
           ]
         },
         {
-          "id": 28,
+          "id": 31,
           "name": "setFactory",
           "kind": 2048,
           "kindString": "Method",
@@ -663,18 +843,24 @@
           },
           "signatures": [
             {
-              "id": 29,
+              "id": 32,
               "name": "setFactory",
               "kind": 4096,
               "kindString": "Call signature",
               "flags": {},
+              "comment": {
+                "shortText": "Sets the factory capable of creating instances of this template."
+              },
               "parameters": [
                 {
-                  "id": 30,
+                  "id": 33,
                   "name": "factory",
                   "kind": 32768,
                   "kindString": "Parameter",
                   "flags": {},
+                  "comment": {
+                    "text": "The factory to set for this entry.\n"
+                  },
                   "type": {
                     "type": "instrinct",
                     "name": "any"
@@ -689,7 +875,7 @@
           ]
         },
         {
-          "id": 25,
+          "id": 28,
           "name": "setResources",
           "kind": 2048,
           "kindString": "Method",
@@ -698,18 +884,24 @@
           },
           "signatures": [
             {
-              "id": 26,
+              "id": 29,
               "name": "setResources",
               "kind": 4096,
               "kindString": "Call signature",
               "flags": {},
+              "comment": {
+                "shortText": "Sets the resources associated with this entry.."
+              },
               "parameters": [
                 {
-                  "id": 27,
+                  "id": 30,
                   "name": "resources",
                   "kind": 32768,
                   "kindString": "Parameter",
                   "flags": {},
+                  "comment": {
+                    "text": "The view resources to associate with this entry.\n"
+                  },
                   "type": {
                     "type": "instrinct",
                     "name": "any"
@@ -724,7 +916,7 @@
           ]
         },
         {
-          "id": 18,
+          "id": 21,
           "name": "setTemplate",
           "kind": 2048,
           "kindString": "Method",
@@ -733,18 +925,24 @@
           },
           "signatures": [
             {
-              "id": 19,
+              "id": 22,
               "name": "setTemplate",
               "kind": 4096,
               "kindString": "Call signature",
               "flags": {},
+              "comment": {
+                "shortText": "Sets the template for this registry entry."
+              },
               "parameters": [
                 {
-                  "id": 20,
+                  "id": 23,
                   "name": "template",
                   "kind": 32768,
                   "kindString": "Parameter",
                   "flags": {},
+                  "comment": {
+                    "text": "The template instance.\n"
+                  },
                   "type": {
                     "type": "reference",
                     "name": "Element"
@@ -764,25 +962,26 @@
           "title": "Constructors",
           "kind": 512,
           "children": [
-            13
+            16
           ]
         },
         {
           "title": "Properties",
           "kind": 1024,
           "children": [
-            17,
-            16
+            15,
+            20,
+            19
           ]
         },
         {
           "title": "Methods",
           "kind": 2048,
           "children": [
-            21,
+            24,
+            31,
             28,
-            25,
-            18
+            21
           ]
         }
       ]
@@ -794,6 +993,9 @@
       "kindString": "Interface",
       "flags": {
         "isExported": true
+      },
+      "comment": {
+        "shortText": "Represents a plugin to the module loader."
       },
       "children": [
         {
@@ -854,9 +1056,9 @@
       "title": "Classes",
       "kind": 128,
       "children": [
-        31,
+        34,
         7,
-        12
+        14
       ]
     },
     {

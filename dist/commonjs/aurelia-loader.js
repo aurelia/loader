@@ -136,13 +136,7 @@ var Loader = (function () {
   };
 
   Loader.prototype.getOrCreateTemplateRegistryEntry = function getOrCreateTemplateRegistryEntry(id) {
-    var entry = this.templateRegistry[id];
-
-    if (entry === undefined) {
-      this.templateRegistry[id] = entry = new TemplateRegistryEntry(id);
-    }
-
-    return entry;
+    return this.templateRegistry[id] || (this.templateRegistry[id] = new TemplateRegistryEntry(id));
   };
 
   return Loader;
