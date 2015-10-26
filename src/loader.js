@@ -100,11 +100,11 @@ export class Loader {
   }
 
   /**
-  * Gets or creates a TemplateRegistryEntry for the provided id.
-  * @param id The id of the template registry entry.
+  * Gets or creates a TemplateRegistryEntry for the provided address.
+  * @param address The address of the template.
   * @return The located or created TemplateRegistryEntry.
   */
-  getOrCreateTemplateRegistryEntry(id: string): TemplateRegistryEntry {
-    return this.templateRegistry[id] || (this.templateRegistry[id] = new TemplateRegistryEntry(id));
+  getOrCreateTemplateRegistryEntry(address: string): TemplateRegistryEntry {
+    return this.templateRegistry[address] || (this.templateRegistry[address] = new TemplateRegistryEntry(address));
   }
 }
