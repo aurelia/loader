@@ -37,6 +37,7 @@ export class TemplateRegistryEntry {
   */
   constructor(address: string) {
     this.address = address;
+    this.onReady = null;
     this._template = null;
     this._factory = null;
   }
