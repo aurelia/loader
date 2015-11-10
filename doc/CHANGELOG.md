@@ -1,3 +1,16 @@
+## 0.11.0 (2015-11-09)
+
+
+#### Bug Fixes
+
+* **template-registry-entry:** add onReady so its defined in ctor for perf ([33148ea4](http://github.com/aurelia/loader/commit/33148ea4b841dcb39f3217768c8cbe0ed174329f))
+
+
+#### Features
+
+* **all:** improved and locked down loader apis ([1174f436](http://github.com/aurelia/loader/commit/1174f436d33dbcd3dc70166cf4d31c9a90259fdf))
+
+
 ## 0.10.0 (2015-10-13)
 
 

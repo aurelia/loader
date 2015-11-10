@@ -25,69 +25,64 @@ var TemplateRegistryEntry = (function () {
   function TemplateRegistryEntry(address) {
     _classCallCheck(this, TemplateRegistryEntry);
 
-    this.address = address;
-    this.template = null;
-    this.dependencies = null;
+    this.templateIsLoaded = false;
+    this.factoryIsReady = false;
     this.resources = null;
-    this.factory = null;
+    this.dependencies = null;
+
+    this.address = address;
+    this.onReady = null;
+    this._template = null;
+    this._factory = null;
   }
 
-  TemplateRegistryEntry.prototype.setTemplate = function setTemplate(template) {
-    var address = this.address;
-    var useResources = undefined;
-    var current = undefined;
-    var src = undefined;
-
-    this.template = template;
-    useResources = template.content.querySelectorAll('require');
-    this.dependencies = new Array(useResources.length);
-
-    if (useResources.length === 0) {
-      return;
-    }
-
-    for (var i = 0, ii = useResources.length; i < ii; ++i) {
-      current = useResources[i];
-      src = current.getAttribute('from');
-
-      if (!src) {
-        throw new Error('<require> element in ' + address + ' has no "from" attribute.');
-      }
-
-      this.dependencies[i] = new TemplateDependency(_aureliaPath.relativeToFile(src, address), current.getAttribute('as'));
-
-      if (current.parentNode) {
-        current.parentNode.removeChild(current);
-      }
-    }
-  };
-
   TemplateRegistryEntry.prototype.addDependency = function addDependency(src, name) {
-    if (typeof src === 'string') {
-      this.dependencies.push(new TemplateDependency(_aureliaPath.relativeToFile(src, this.address), name));
-    } else if (typeof src === 'function') {
-      var origin = _aureliaMetadata.Origin.get(src);
-      this.dependencies.push(new TemplateDependency(origin.moduleId, name));
-    }
-  };
+    var finalSrc = typeof src === 'string' ? _aureliaPath.relativeToFile(src, this.address) : _aureliaMetadata.Origin.get(src).moduleId;
 
-  TemplateRegistryEntry.prototype.setResources = function setResources(resources) {
-    this.resources = resources;
-  };
-
-  TemplateRegistryEntry.prototype.setFactory = function setFactory(factory) {
-    this.factory = factory;
+    this.dependencies.push(new TemplateDependency(finalSrc, name));
   };
 
   _createClass(TemplateRegistryEntry, [{
-    key: 'templateIsLoaded',
+    key: 'template',
     get: function get() {
-      return this.template !== null;
+      return this._template;
+    },
+    set: function set(value) {
+      var address = this.address;
+      var requires = undefined;
+      var current = undefined;
+      var src = undefined;
+      var dependencies = undefined;
+
+      this._template = value;
+      this.templateIsLoaded = true;
+
+      requires = value.content.querySelectorAll('require');
+      dependencies = this.dependencies = new Array(requires.length);
+
+      for (var i = 0, ii = requires.length; i < ii; ++i) {
+        current = requires[i];
+        src = current.getAttribute('from');
+
+        if (!src) {
+          throw new Error('<require> element in ' + address + ' has no "from" attribute.');
+        }
+
+        dependencies[i] = new TemplateDependency(_aureliaPath.relativeToFile(src, address), current.getAttribute('as'));
+
+        if (current.parentNode) {
+          current.parentNode.removeChild(current);
+        }
+      }
     }
   }, {
-    key: 'isReady',
+    key: 'factory',
     get: function get() {
-      return this.factory !== null;
+      return this._factory;
+    },
+    set: function set(value) {
+      this._factory = value;
+      this.factoryIsReady = true;
     }
   }]);
 
@@ -135,8 +130,8 @@ var Loader = (function () {
     throw new Error('Loader must implement addPlugin(pluginName, implementation).');
   };
 
-  Loader.prototype.getOrCreateTemplateRegistryEntry = function getOrCreateTemplateRegistryEntry(id) {
-    return this.templateRegistry[id] || (this.templateRegistry[id] = new TemplateRegistryEntry(id));
+  Loader.prototype.getOrCreateTemplateRegistryEntry = function getOrCreateTemplateRegistryEntry(address) {
+    return this.templateRegistry[address] || (this.templateRegistry[address] = new TemplateRegistryEntry(address));
   };
 
   return Loader;

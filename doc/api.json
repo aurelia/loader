@@ -6,7 +6,7 @@
   "flags": {},
   "children": [
     {
-      "id": 34,
+      "id": 29,
       "name": "Loader",
       "kind": 128,
       "kindString": "Class",
@@ -18,7 +18,7 @@
       },
       "children": [
         {
-          "id": 35,
+          "id": 30,
           "name": "constructor",
           "kind": 512,
           "kindString": "Constructor",
@@ -30,7 +30,7 @@
           },
           "signatures": [
             {
-              "id": 36,
+              "id": 31,
               "name": "new Loader",
               "kind": 16384,
               "kindString": "Constructor signature",
@@ -41,14 +41,14 @@
               "type": {
                 "type": "reference",
                 "name": "Loader",
-                "id": 34,
+                "id": 29,
                 "moduleName": "\"aurelia-loader\""
               }
             }
           ]
         },
         {
-          "id": 61,
+          "id": 56,
           "name": "addPlugin",
           "kind": 2048,
           "kindString": "Method",
@@ -57,7 +57,7 @@
           },
           "signatures": [
             {
-              "id": 62,
+              "id": 57,
               "name": "addPlugin",
               "kind": 4096,
               "kindString": "Call signature",
@@ -67,7 +67,7 @@
               },
               "parameters": [
                 {
-                  "id": 63,
+                  "id": 58,
                   "name": "pluginName",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -81,7 +81,7 @@
                   }
                 },
                 {
-                  "id": 64,
+                  "id": 59,
                   "name": "implementation",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -105,7 +105,7 @@
           ]
         },
         {
-          "id": 57,
+          "id": 52,
           "name": "applyPluginToUrl",
           "kind": 2048,
           "kindString": "Method",
@@ -114,7 +114,7 @@
           },
           "signatures": [
             {
-              "id": 58,
+              "id": 53,
               "name": "applyPluginToUrl",
               "kind": 4096,
               "kindString": "Call signature",
@@ -125,7 +125,7 @@
               },
               "parameters": [
                 {
-                  "id": 59,
+                  "id": 54,
                   "name": "url",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -139,7 +139,7 @@
                   }
                 },
                 {
-                  "id": 60,
+                  "id": 55,
                   "name": "pluginName",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -161,7 +161,7 @@
           ]
         },
         {
-          "id": 65,
+          "id": 60,
           "name": "getOrCreateTemplateRegistryEntry",
           "kind": 2048,
           "kindString": "Method",
@@ -170,24 +170,24 @@
           },
           "signatures": [
             {
-              "id": 66,
+              "id": 61,
               "name": "getOrCreateTemplateRegistryEntry",
               "kind": 4096,
               "kindString": "Call signature",
               "flags": {},
               "comment": {
-                "shortText": "Gets or creates a TemplateRegistryEntry for the provided id.",
+                "shortText": "Gets or creates a TemplateRegistryEntry for the provided address.",
                 "returns": "The located or created TemplateRegistryEntry.\n"
               },
               "parameters": [
                 {
-                  "id": 67,
-                  "name": "id",
+                  "id": 62,
+                  "name": "address",
                   "kind": 32768,
                   "kindString": "Parameter",
                   "flags": {},
                   "comment": {
-                    "text": "The id of the template registry entry."
+                    "text": "The address of the template."
                   },
                   "type": {
                     "type": "instrinct",
@@ -205,7 +205,7 @@
           ]
         },
         {
-          "id": 48,
+          "id": 43,
           "name": "loadAllModules",
           "kind": 2048,
           "kindString": "Method",
@@ -214,7 +214,7 @@
           },
           "signatures": [
             {
-              "id": 49,
+              "id": 44,
               "name": "loadAllModules",
               "kind": 4096,
               "kindString": "Call signature",
@@ -225,7 +225,7 @@
               },
               "parameters": [
                 {
-                  "id": 50,
+                  "id": 45,
                   "name": "ids",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -255,7 +255,7 @@
           ]
         },
         {
-          "id": 45,
+          "id": 40,
           "name": "loadModule",
           "kind": 2048,
           "kindString": "Method",
@@ -264,7 +264,7 @@
           },
           "signatures": [
             {
-              "id": 46,
+              "id": 41,
               "name": "loadModule",
               "kind": 4096,
               "kindString": "Call signature",
@@ -275,7 +275,7 @@
               },
               "parameters": [
                 {
-                  "id": 47,
+                  "id": 42,
                   "name": "id",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -303,7 +303,7 @@
           ]
         },
         {
-          "id": 51,
+          "id": 46,
           "name": "loadTemplate",
           "kind": 2048,
           "kindString": "Method",
@@ -312,7 +312,7 @@
           },
           "signatures": [
             {
-              "id": 52,
+              "id": 47,
               "name": "loadTemplate",
               "kind": 4096,
               "kindString": "Call signature",
@@ -323,7 +323,7 @@
               },
               "parameters": [
                 {
-                  "id": 53,
+                  "id": 48,
                   "name": "url",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -352,7 +352,7 @@
           ]
         },
         {
-          "id": 54,
+          "id": 49,
           "name": "loadText",
           "kind": 2048,
           "kindString": "Method",
@@ -361,7 +361,7 @@
           },
           "signatures": [
             {
-              "id": 55,
+              "id": 50,
               "name": "loadText",
               "kind": 4096,
               "kindString": "Call signature",
@@ -372,7 +372,7 @@
               },
               "parameters": [
                 {
-                  "id": 56,
+                  "id": 51,
                   "name": "url",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -400,7 +400,7 @@
           ]
         },
         {
-          "id": 37,
+          "id": 32,
           "name": "map",
           "kind": 2048,
           "kindString": "Method",
@@ -409,7 +409,7 @@
           },
           "signatures": [
             {
-              "id": 38,
+              "id": 33,
               "name": "map",
               "kind": 4096,
               "kindString": "Call signature",
@@ -419,7 +419,7 @@
               },
               "parameters": [
                 {
-                  "id": 39,
+                  "id": 34,
                   "name": "id",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -433,7 +433,7 @@
                   }
                 },
                 {
-                  "id": 40,
+                  "id": 35,
                   "name": "source",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -455,7 +455,7 @@
           ]
         },
         {
-          "id": 41,
+          "id": 36,
           "name": "normalizeSync",
           "kind": 2048,
           "kindString": "Method",
@@ -464,7 +464,7 @@
           },
           "signatures": [
             {
-              "id": 42,
+              "id": 37,
               "name": "normalizeSync",
               "kind": 4096,
               "kindString": "Call signature",
@@ -475,7 +475,7 @@
               },
               "parameters": [
                 {
-                  "id": 43,
+                  "id": 38,
                   "name": "moduleId",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -489,7 +489,7 @@
                   }
                 },
                 {
-                  "id": 44,
+                  "id": 39,
                   "name": "relativeTo",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -516,22 +516,22 @@
           "title": "Constructors",
           "kind": 512,
           "children": [
-            35
+            30
           ]
         },
         {
           "title": "Methods",
           "kind": 2048,
           "children": [
-            61,
-            57,
-            65,
-            48,
-            45,
-            51,
-            54,
-            37,
-            41
+            56,
+            52,
+            60,
+            43,
+            40,
+            46,
+            49,
+            32,
+            36
           ]
         }
       ]
@@ -674,7 +674,7 @@
       },
       "children": [
         {
-          "id": 16,
+          "id": 20,
           "name": "constructor",
           "kind": 512,
           "kindString": "Constructor",
@@ -686,7 +686,7 @@
           },
           "signatures": [
             {
-              "id": 17,
+              "id": 21,
               "name": "new TemplateRegistryEntry",
               "kind": 16384,
               "kindString": "Constructor signature",
@@ -696,7 +696,7 @@
               },
               "parameters": [
                 {
-                  "id": 18,
+                  "id": 22,
                   "name": "address",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -736,8 +736,43 @@
           }
         },
         {
-          "id": 20,
-          "name": "isReady",
+          "id": 19,
+          "name": "dependencies",
+          "kind": 1024,
+          "kindString": "Property",
+          "flags": {
+            "isExported": true
+          },
+          "comment": {
+            "shortText": "The dependencies of the associated template. Dependencies are not available until after the template is loaded."
+          },
+          "type": {
+            "type": "reference",
+            "isArray": true,
+            "name": "TemplateDependency",
+            "id": 7,
+            "moduleName": "\"aurelia-loader\""
+          }
+        },
+        {
+          "id": 24,
+          "name": "factory",
+          "kind": 1024,
+          "kindString": "Property",
+          "flags": {
+            "isExported": true
+          },
+          "comment": {
+            "shortText": "Gets the factory capable of creating instances of this template."
+          },
+          "type": {
+            "type": "instrinct",
+            "name": "any"
+          }
+        },
+        {
+          "id": 17,
+          "name": "factoryIsReady",
           "kind": 1024,
           "kindString": "Property",
           "flags": {
@@ -752,7 +787,39 @@
           }
         },
         {
-          "id": 19,
+          "id": 18,
+          "name": "resources",
+          "kind": 1024,
+          "kindString": "Property",
+          "flags": {
+            "isExported": true
+          },
+          "comment": {
+            "shortText": "Sets the resources associated with this entry."
+          },
+          "type": {
+            "type": "reference",
+            "name": "Object"
+          }
+        },
+        {
+          "id": 23,
+          "name": "template",
+          "kind": 1024,
+          "kindString": "Property",
+          "flags": {
+            "isExported": true
+          },
+          "comment": {
+            "shortText": "Gets the template for this registry entry."
+          },
+          "type": {
+            "type": "reference",
+            "name": "Element"
+          }
+        },
+        {
+          "id": 16,
           "name": "templateIsLoaded",
           "kind": 1024,
           "kindString": "Property",
@@ -768,7 +835,7 @@
           }
         },
         {
-          "id": 24,
+          "id": 25,
           "name": "addDependency",
           "kind": 2048,
           "kindString": "Method",
@@ -777,17 +844,17 @@
           },
           "signatures": [
             {
-              "id": 25,
+              "id": 26,
               "name": "addDependency",
               "kind": 4096,
               "kindString": "Call signature",
               "flags": {},
               "comment": {
-                "shortText": "Adds a dependency to this template registry entry."
+                "shortText": "Adds a dependency to this template registry entry. Cannot be called until after the template is set."
               },
               "parameters": [
                 {
-                  "id": 26,
+                  "id": 27,
                   "name": "src",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -810,7 +877,7 @@
                   }
                 },
                 {
-                  "id": 27,
+                  "id": 28,
                   "name": "name",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -832,129 +899,6 @@
               }
             }
           ]
-        },
-        {
-          "id": 31,
-          "name": "setFactory",
-          "kind": 2048,
-          "kindString": "Method",
-          "flags": {
-            "isExported": true
-          },
-          "signatures": [
-            {
-              "id": 32,
-              "name": "setFactory",
-              "kind": 4096,
-              "kindString": "Call signature",
-              "flags": {},
-              "comment": {
-                "shortText": "Sets the factory capable of creating instances of this template."
-              },
-              "parameters": [
-                {
-                  "id": 33,
-                  "name": "factory",
-                  "kind": 32768,
-                  "kindString": "Parameter",
-                  "flags": {},
-                  "comment": {
-                    "text": "The factory to set for this entry.\n"
-                  },
-                  "type": {
-                    "type": "instrinct",
-                    "name": "any"
-                  }
-                }
-              ],
-              "type": {
-                "type": "instrinct",
-                "name": "void"
-              }
-            }
-          ]
-        },
-        {
-          "id": 28,
-          "name": "setResources",
-          "kind": 2048,
-          "kindString": "Method",
-          "flags": {
-            "isExported": true
-          },
-          "signatures": [
-            {
-              "id": 29,
-              "name": "setResources",
-              "kind": 4096,
-              "kindString": "Call signature",
-              "flags": {},
-              "comment": {
-                "shortText": "Sets the resources associated with this entry.."
-              },
-              "parameters": [
-                {
-                  "id": 30,
-                  "name": "resources",
-                  "kind": 32768,
-                  "kindString": "Parameter",
-                  "flags": {},
-                  "comment": {
-                    "text": "The view resources to associate with this entry.\n"
-                  },
-                  "type": {
-                    "type": "instrinct",
-                    "name": "any"
-                  }
-                }
-              ],
-              "type": {
-                "type": "instrinct",
-                "name": "void"
-              }
-            }
-          ]
-        },
-        {
-          "id": 21,
-          "name": "setTemplate",
-          "kind": 2048,
-          "kindString": "Method",
-          "flags": {
-            "isExported": true
-          },
-          "signatures": [
-            {
-              "id": 22,
-              "name": "setTemplate",
-              "kind": 4096,
-              "kindString": "Call signature",
-              "flags": {},
-              "comment": {
-                "shortText": "Sets the template for this registry entry."
-              },
-              "parameters": [
-                {
-                  "id": 23,
-                  "name": "template",
-                  "kind": 32768,
-                  "kindString": "Parameter",
-                  "flags": {},
-                  "comment": {
-                    "text": "The template instance.\n"
-                  },
-                  "type": {
-                    "type": "reference",
-                    "name": "Element"
-                  }
-                }
-              ],
-              "type": {
-                "type": "instrinct",
-                "name": "void"
-              }
-            }
-          ]
         }
       ],
       "groups": [
@@ -962,7 +906,7 @@
           "title": "Constructors",
           "kind": 512,
           "children": [
-            16
+            20
           ]
         },
         {
@@ -970,18 +914,19 @@
           "kind": 1024,
           "children": [
             15,
-            20,
-            19
+            19,
+            24,
+            17,
+            18,
+            23,
+            16
           ]
         },
         {
           "title": "Methods",
           "kind": 2048,
           "children": [
-            24,
-            31,
-            28,
-            21
+            25
           ]
         }
       ]
@@ -1056,7 +1001,7 @@
       "title": "Classes",
       "kind": 128,
       "children": [
-        34,
+        29,
         7,
         14
       ]

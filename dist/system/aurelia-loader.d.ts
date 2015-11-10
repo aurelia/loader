@@ -45,12 +45,6 @@ declare module 'aurelia-loader' {
     address: string;
     
     /**
-      * Creates an instance of TemplateRegistryEntry.
-      * @param address The address of the template that this entry represents.
-      */
-    constructor(address: string);
-    
-    /**
       * Indicates whether or not the associated template is loaded .
       */
     templateIsLoaded: boolean;
@@ -58,32 +52,40 @@ declare module 'aurelia-loader' {
     /**
       * Indicates whether the factory is ready to be used to create instances of the associated template.
       */
-    isReady: boolean;
+    factoryIsReady: boolean;
     
     /**
-      * Sets the template for this registry entry.
-      * @param template The template instance.
+      * Sets the resources associated with this entry.
       */
-    setTemplate(template: Element): void;
+    resources: Object;
     
     /**
-      * Adds a dependency to this template registry entry.
+      * The dependencies of the associated template. Dependencies are not available until after the template is loaded.
+      */
+    dependencies: TemplateDependency[];
+    
+    /**
+      * Creates an instance of TemplateRegistryEntry.
+      * @param address The address of the template that this entry represents.
+      */
+    constructor(address: string);
+    
+    /**
+      * Gets the template for this registry entry.
+      */
+    template: Element;
+    
+    /**
+      * Gets the factory capable of creating instances of this template.
+      */
+    factory: any;
+    
+    /**
+      * Adds a dependency to this template registry entry. Cannot be called until after the template is set.
       * @param src The dependency instance or a relative path to its module.
       * @param name An optional local name by which this dependency is used in the template.
       */
     addDependency(src: string | Function, name?: string): void;
-    
-    /**
-      * Sets the resources associated with this entry..
-      * @param resources The view resources to associate with this entry.
-      */
-    setResources(resources: any): void;
-    
-    /**
-      * Sets the factory capable of creating instances of this template.
-      * @param factory The factory to set for this entry.
-      */
-    setFactory(factory: any): void;
   }
   
   /**
@@ -155,10 +157,10 @@ declare module 'aurelia-loader' {
     addPlugin(pluginName: string, implementation: LoaderPlugin): void;
     
     /**
-      * Gets or creates a TemplateRegistryEntry for the provided id.
-      * @param id The id of the template registry entry.
+      * Gets or creates a TemplateRegistryEntry for the provided address.
+      * @param address The address of the template.
       * @return The located or created TemplateRegistryEntry.
       */
-    getOrCreateTemplateRegistryEntry(id: string): TemplateRegistryEntry;
+    getOrCreateTemplateRegistryEntry(address: string): TemplateRegistryEntry;
   }
 }
