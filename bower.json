@@ -1,6 +1,6 @@
 {
   "name": "aurelia-loader",
-  "version": "0.11.0",
+  "version": "1.0.0-beta.1",
   "description": "An abstract module which specifies an interface for loading modules and view templates.",
   "keywords": [
     "aurelia",
@@ -17,8 +17,7 @@
     "url": "http://github.com/aurelia/loader"
   },
   "dependencies": {
-    "aurelia-metadata": "^0.10.0",
-    "aurelia-path": "^0.11.0",
-    "core-js": "zloirock/core-js"
+    "aurelia-metadata": "^1.0.0-beta.1",
+    "aurelia-path": "^1.0.0-beta.1"
   }
 }

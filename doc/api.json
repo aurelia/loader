@@ -958,6 +958,10 @@
               "kind": 4096,
               "kindString": "Call signature",
               "flags": {},
+              "comment": {
+                "shortText": "Fetches the resource.",
+                "returns": "A Promise for the requested resouce.\n"
+              },
               "parameters": [
                 {
                   "id": 6,
@@ -965,6 +969,9 @@
                   "kind": 32768,
                   "kindString": "Parameter",
                   "flags": {},
+                  "comment": {
+                    "text": "The address of the resource."
+                  },
                   "type": {
                     "type": "instrinct",
                     "name": "string"

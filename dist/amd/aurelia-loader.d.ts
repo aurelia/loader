@@ -8,6 +8,12 @@ declare module 'aurelia-loader' {
   * Represents a plugin to the module loader.
   */
   export interface LoaderPlugin {
+    
+    /**
+      * Fetches the resource.
+      * @param address The address of the resource.
+      * @return A Promise for the requested resouce.
+      */
     fetch(address: string): Promise<any>;
   }
   
