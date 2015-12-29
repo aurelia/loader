@@ -1,5 +1,4 @@
 /*eslint no-unused-vars:0*/
-import 'core-js';
 import {TemplateRegistryEntry} from './template-registry-entry';
 
 /**
