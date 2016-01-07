@@ -44,6 +44,16 @@ export class Loader {
   }
 
   /**
+  * Normalizes a module id.
+  * @param moduleId The module id to normalize.
+  * @param relativeTo What the module id should be normalized relative to.
+  * @return A promise for the normalized module id.
+  */
+  normalize(moduleId: string, relativeTo: string): Promise<string> {
+    throw new Error('Loaders must implement normalize(moduleId: string, relativeTo: string): Promise<string>.');
+  }
+
+  /**
   * Loads a module.
   * @param id The module id to normalize.
   * @return A Promise for the loaded module.
