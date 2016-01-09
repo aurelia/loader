@@ -48,7 +48,7 @@
           ]
         },
         {
-          "id": 56,
+          "id": 60,
           "name": "addPlugin",
           "kind": 2048,
           "kindString": "Method",
@@ -57,7 +57,7 @@
           },
           "signatures": [
             {
-              "id": 57,
+              "id": 61,
               "name": "addPlugin",
               "kind": 4096,
               "kindString": "Call signature",
@@ -67,7 +67,7 @@
               },
               "parameters": [
                 {
-                  "id": 58,
+                  "id": 62,
                   "name": "pluginName",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -81,7 +81,7 @@
                   }
                 },
                 {
-                  "id": 59,
+                  "id": 63,
                   "name": "implementation",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -105,7 +105,7 @@
           ]
         },
         {
-          "id": 52,
+          "id": 56,
           "name": "applyPluginToUrl",
           "kind": 2048,
           "kindString": "Method",
@@ -114,7 +114,7 @@
           },
           "signatures": [
             {
-              "id": 53,
+              "id": 57,
               "name": "applyPluginToUrl",
               "kind": 4096,
               "kindString": "Call signature",
@@ -125,7 +125,7 @@
               },
               "parameters": [
                 {
-                  "id": 54,
+                  "id": 58,
                   "name": "url",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -139,7 +139,7 @@
                   }
                 },
                 {
-                  "id": 55,
+                  "id": 59,
                   "name": "pluginName",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -161,7 +161,7 @@
           ]
         },
         {
-          "id": 60,
+          "id": 64,
           "name": "getOrCreateTemplateRegistryEntry",
           "kind": 2048,
           "kindString": "Method",
@@ -170,7 +170,7 @@
           },
           "signatures": [
             {
-              "id": 61,
+              "id": 65,
               "name": "getOrCreateTemplateRegistryEntry",
               "kind": 4096,
               "kindString": "Call signature",
@@ -181,7 +181,7 @@
               },
               "parameters": [
                 {
-                  "id": 62,
+                  "id": 66,
                   "name": "address",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -205,7 +205,7 @@
           ]
         },
         {
-          "id": 43,
+          "id": 47,
           "name": "loadAllModules",
           "kind": 2048,
           "kindString": "Method",
@@ -214,7 +214,7 @@
           },
           "signatures": [
             {
-              "id": 44,
+              "id": 48,
               "name": "loadAllModules",
               "kind": 4096,
               "kindString": "Call signature",
@@ -225,7 +225,7 @@
               },
               "parameters": [
                 {
-                  "id": 45,
+                  "id": 49,
                   "name": "ids",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -255,7 +255,7 @@
           ]
         },
         {
-          "id": 40,
+          "id": 44,
           "name": "loadModule",
           "kind": 2048,
           "kindString": "Method",
@@ -264,7 +264,7 @@
           },
           "signatures": [
             {
-              "id": 41,
+              "id": 45,
               "name": "loadModule",
               "kind": 4096,
               "kindString": "Call signature",
@@ -275,7 +275,7 @@
               },
               "parameters": [
                 {
-                  "id": 42,
+                  "id": 46,
                   "name": "id",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -303,7 +303,7 @@
           ]
         },
         {
-          "id": 46,
+          "id": 50,
           "name": "loadTemplate",
           "kind": 2048,
           "kindString": "Method",
@@ -312,7 +312,7 @@
           },
           "signatures": [
             {
-              "id": 47,
+              "id": 51,
               "name": "loadTemplate",
               "kind": 4096,
               "kindString": "Call signature",
@@ -323,7 +323,7 @@
               },
               "parameters": [
                 {
-                  "id": 48,
+                  "id": 52,
                   "name": "url",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -352,7 +352,7 @@
           ]
         },
         {
-          "id": 49,
+          "id": 53,
           "name": "loadText",
           "kind": 2048,
           "kindString": "Method",
@@ -361,7 +361,7 @@
           },
           "signatures": [
             {
-              "id": 50,
+              "id": 54,
               "name": "loadText",
               "kind": 4096,
               "kindString": "Call signature",
@@ -372,7 +372,7 @@
               },
               "parameters": [
                 {
-                  "id": 51,
+                  "id": 55,
                   "name": "url",
                   "kind": 32768,
                   "kindString": "Parameter",
@@ -455,6 +455,68 @@
           ]
         },
         {
+          "id": 40,
+          "name": "normalize",
+          "kind": 2048,
+          "kindString": "Method",
+          "flags": {
+            "isExported": true
+          },
+          "signatures": [
+            {
+              "id": 41,
+              "name": "normalize",
+              "kind": 4096,
+              "kindString": "Call signature",
+              "flags": {},
+              "comment": {
+                "shortText": "Normalizes a module id.",
+                "returns": "A promise for the normalized module id.\n"
+              },
+              "parameters": [
+                {
+                  "id": 42,
+                  "name": "moduleId",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "comment": {
+                    "text": "The module id to normalize."
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "string"
+                  }
+                },
+                {
+                  "id": 43,
+                  "name": "relativeTo",
+                  "kind": 32768,
+                  "kindString": "Parameter",
+                  "flags": {},
+                  "comment": {
+                    "text": "What the module id should be normalized relative to."
+                  },
+                  "type": {
+                    "type": "instrinct",
+                    "name": "string"
+                  }
+                }
+              ],
+              "type": {
+                "type": "reference",
+                "name": "Promise",
+                "typeArguments": [
+                  {
+                    "type": "instrinct",
+                    "name": "string"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
           "id": 36,
           "name": "normalizeSync",
           "kind": 2048,
@@ -523,14 +585,15 @@
           "title": "Methods",
           "kind": 2048,
           "children": [
-            56,
-            52,
             60,
-            43,
-            40,
-            46,
-            49,
+            56,
+            64,
+            47,
+            44,
+            50,
+            53,
             32,
+            40,
             36
           ]
         }

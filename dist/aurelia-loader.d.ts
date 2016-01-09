@@ -1,5 +1,4 @@
 declare module 'aurelia-loader' {
-  import 'core-js';
   import { relativeToFile }  from 'aurelia-path';
   import { Origin }  from 'aurelia-metadata';
   
@@ -118,6 +117,14 @@ declare module 'aurelia-loader' {
       * @return The normalized module id.
       */
     normalizeSync(moduleId: string, relativeTo: string): string;
+    
+    /**
+      * Normalizes a module id.
+      * @param moduleId The module id to normalize.
+      * @param relativeTo What the module id should be normalized relative to.
+      * @return A promise for the normalized module id.
+      */
+    normalize(moduleId: string, relativeTo: string): Promise<string>;
     
     /**
       * Loads a module.

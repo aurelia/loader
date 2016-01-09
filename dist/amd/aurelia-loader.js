@@ -1,4 +1,4 @@
-define(['exports', 'core-js', 'aurelia-path', 'aurelia-metadata'], function (exports, _coreJs, _aureliaPath, _aureliaMetadata) {
+define(['exports', 'aurelia-path', 'aurelia-metadata'], function (exports, _aureliaPath, _aureliaMetadata) {
   'use strict';
 
   exports.__esModule = true;
@@ -99,6 +99,10 @@ define(['exports', 'core-js', 'aurelia-path', 'aurelia-metadata'], function (exp
 
     Loader.prototype.normalizeSync = function normalizeSync(moduleId, relativeTo) {
       throw new Error('Loaders must implement normalizeSync(moduleId, relativeTo).');
+    };
+
+    Loader.prototype.normalize = function normalize(moduleId, relativeTo) {
+      throw new Error('Loaders must implement normalize(moduleId: string, relativeTo: string): Promise<string>.');
     };
 
     Loader.prototype.loadModule = function loadModule(id) {

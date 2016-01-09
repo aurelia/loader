@@ -1,4 +1,4 @@
-System.register(['core-js', 'aurelia-path', 'aurelia-metadata'], function (_export) {
+System.register(['aurelia-path', 'aurelia-metadata'], function (_export) {
   'use strict';
 
   var relativeToFile, Origin, TemplateDependency, TemplateRegistryEntry, Loader;
@@ -8,7 +8,7 @@ System.register(['core-js', 'aurelia-path', 'aurelia-metadata'], function (_expo
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
   return {
-    setters: [function (_coreJs) {}, function (_aureliaPath) {
+    setters: [function (_aureliaPath) {
       relativeToFile = _aureliaPath.relativeToFile;
     }, function (_aureliaMetadata) {
       Origin = _aureliaMetadata.Origin;
@@ -106,6 +106,10 @@ System.register(['core-js', 'aurelia-path', 'aurelia-metadata'], function (_expo
 
         Loader.prototype.normalizeSync = function normalizeSync(moduleId, relativeTo) {
           throw new Error('Loaders must implement normalizeSync(moduleId, relativeTo).');
+        };
+
+        Loader.prototype.normalize = function normalize(moduleId, relativeTo) {
+          throw new Error('Loaders must implement normalize(moduleId: string, relativeTo: string): Promise<string>.');
         };
 
         Loader.prototype.loadModule = function loadModule(id) {

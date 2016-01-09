@@ -6,8 +6,6 @@ var _createClass = (function () { function defineProperties(target, props) { for
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-require('core-js');
-
 var _aureliaPath = require('aurelia-path');
 
 var _aureliaMetadata = require('aurelia-metadata');
@@ -104,6 +102,10 @@ var Loader = (function () {
 
   Loader.prototype.normalizeSync = function normalizeSync(moduleId, relativeTo) {
     throw new Error('Loaders must implement normalizeSync(moduleId, relativeTo).');
+  };
+
+  Loader.prototype.normalize = function normalize(moduleId, relativeTo) {
+    throw new Error('Loaders must implement normalize(moduleId: string, relativeTo: string): Promise<string>.');
   };
 
   Loader.prototype.loadModule = function loadModule(id) {

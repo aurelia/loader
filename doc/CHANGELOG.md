@@ -1,3 +1,16 @@
+### 1.0.0-beta.1.0.1 (2016-01-08)
+
+
+#### Bug Fixes
+
+* **loader:** remove un-need core-js import ([aec5fa20](http://github.com/aurelia/loader/commit/aec5fa20eaefbce8b48383056e86459ce01b5bcf))
+
+
+#### Features
+
+* **loader:** add normalize api ([e5d5a9e5](http://github.com/aurelia/loader/commit/e5d5a9e551f8bf4ba1fc7a140fd787bc45cad3d9))
+
+
 ### 1.0.0-beta.1 (2015-11-16)
 
 
