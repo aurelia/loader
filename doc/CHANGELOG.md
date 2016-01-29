@@ -1,3 +1,7 @@
+### 1.0.0-beta.1.1.0 (2016-01-29)
+
+* update jspm metadata; core-js; aurelia-deps
+
 ### 1.0.0-beta.1.0.1 (2016-01-08)
 
 
