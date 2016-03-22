@@ -1,22 +1,43 @@
 define(['exports', 'aurelia-path', 'aurelia-metadata'], function (exports, _aureliaPath, _aureliaMetadata) {
   'use strict';
 
-  exports.__esModule = true;
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.Loader = exports.TemplateRegistryEntry = exports.TemplateDependency = undefined;
 
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  var _createClass = function () {
+    function defineProperties(target, props) {
+      for (var i = 0; i < props.length; i++) {
+        var descriptor = props[i];
+        descriptor.enumerable = descriptor.enumerable || false;
+        descriptor.configurable = true;
+        if ("value" in descriptor) descriptor.writable = true;
+        Object.defineProperty(target, descriptor.key, descriptor);
+      }
+    }
 
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+    return function (Constructor, protoProps, staticProps) {
+      if (protoProps) defineProperties(Constructor.prototype, protoProps);
+      if (staticProps) defineProperties(Constructor, staticProps);
+      return Constructor;
+    };
+  }();
 
-  var TemplateDependency = function TemplateDependency(src, name) {
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  var TemplateDependency = exports.TemplateDependency = function TemplateDependency(src, name) {
     _classCallCheck(this, TemplateDependency);
 
     this.src = src;
     this.name = name;
   };
 
-  exports.TemplateDependency = TemplateDependency;
-
-  var TemplateRegistryEntry = (function () {
+  var TemplateRegistryEntry = exports.TemplateRegistryEntry = function () {
     function TemplateRegistryEntry(address) {
       _classCallCheck(this, TemplateRegistryEntry);
 
@@ -32,7 +53,7 @@ define(['exports', 'aurelia-path', 'aurelia-metadata'], function (exports, _aure
     }
 
     TemplateRegistryEntry.prototype.addDependency = function addDependency(src, name) {
-      var finalSrc = typeof src === 'string' ? _aureliaPath.relativeToFile(src, this.address) : _aureliaMetadata.Origin.get(src).moduleId;
+      var finalSrc = typeof src === 'string' ? (0, _aureliaPath.relativeToFile)(src, this.address) : _aureliaMetadata.Origin.get(src).moduleId;
 
       this.dependencies.push(new TemplateDependency(finalSrc, name));
     };
@@ -44,10 +65,10 @@ define(['exports', 'aurelia-path', 'aurelia-metadata'], function (exports, _aure
       },
       set: function set(value) {
         var address = this.address;
-        var requires = undefined;
-        var current = undefined;
-        var src = undefined;
-        var dependencies = undefined;
+        var requires = void 0;
+        var current = void 0;
+        var src = void 0;
+        var dependencies = void 0;
 
         this._template = value;
         this.templateIsLoaded = true;
@@ -63,7 +84,7 @@ define(['exports', 'aurelia-path', 'aurelia-metadata'], function (exports, _aure
             throw new Error('<require> element in ' + address + ' has no "from" attribute.');
           }
 
-          dependencies[i] = new TemplateDependency(_aureliaPath.relativeToFile(src, address), current.getAttribute('as'));
+          dependencies[i] = new TemplateDependency((0, _aureliaPath.relativeToFile)(src, address), current.getAttribute('as'));
 
           if (current.parentNode) {
             current.parentNode.removeChild(current);
@@ -82,11 +103,9 @@ define(['exports', 'aurelia-path', 'aurelia-metadata'], function (exports, _aure
     }]);
 
     return TemplateRegistryEntry;
-  })();
+  }();
 
-  exports.TemplateRegistryEntry = TemplateRegistryEntry;
-
-  var Loader = (function () {
+  var Loader = exports.Loader = function () {
     function Loader() {
       _classCallCheck(this, Loader);
 
@@ -134,7 +153,5 @@ define(['exports', 'aurelia-path', 'aurelia-metadata'], function (exports, _aure
     };
 
     return Loader;
-  })();
-
-  exports.Loader = Loader;
+  }();
 });

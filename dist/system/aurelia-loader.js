@@ -1,11 +1,13 @@
-System.register(['aurelia-path', 'aurelia-metadata'], function (_export) {
-  'use strict';
+'use strict';
 
-  var relativeToFile, Origin, TemplateDependency, TemplateRegistryEntry, Loader;
+System.register(['aurelia-path', 'aurelia-metadata'], function (_export, _context) {
+  var relativeToFile, Origin, _createClass, TemplateDependency, TemplateRegistryEntry, Loader;
 
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
 
   return {
     setters: [function (_aureliaPath) {
@@ -14,16 +16,34 @@ System.register(['aurelia-path', 'aurelia-metadata'], function (_export) {
       Origin = _aureliaMetadata.Origin;
     }],
     execute: function () {
-      TemplateDependency = function TemplateDependency(src, name) {
+      _createClass = function () {
+        function defineProperties(target, props) {
+          for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];
+            descriptor.enumerable = descriptor.enumerable || false;
+            descriptor.configurable = true;
+            if ("value" in descriptor) descriptor.writable = true;
+            Object.defineProperty(target, descriptor.key, descriptor);
+          }
+        }
+
+        return function (Constructor, protoProps, staticProps) {
+          if (protoProps) defineProperties(Constructor.prototype, protoProps);
+          if (staticProps) defineProperties(Constructor, staticProps);
+          return Constructor;
+        };
+      }();
+
+      _export('TemplateDependency', TemplateDependency = function TemplateDependency(src, name) {
         _classCallCheck(this, TemplateDependency);
 
         this.src = src;
         this.name = name;
-      };
+      });
 
       _export('TemplateDependency', TemplateDependency);
 
-      TemplateRegistryEntry = (function () {
+      _export('TemplateRegistryEntry', TemplateRegistryEntry = function () {
         function TemplateRegistryEntry(address) {
           _classCallCheck(this, TemplateRegistryEntry);
 
@@ -51,10 +71,10 @@ System.register(['aurelia-path', 'aurelia-metadata'], function (_export) {
           },
           set: function set(value) {
             var address = this.address;
-            var requires = undefined;
-            var current = undefined;
-            var src = undefined;
-            var dependencies = undefined;
+            var requires = void 0;
+            var current = void 0;
+            var src = void 0;
+            var dependencies = void 0;
 
             this._template = value;
             this.templateIsLoaded = true;
@@ -89,11 +109,11 @@ System.register(['aurelia-path', 'aurelia-metadata'], function (_export) {
         }]);
 
         return TemplateRegistryEntry;
-      })();
+      }());
 
       _export('TemplateRegistryEntry', TemplateRegistryEntry);
 
-      Loader = (function () {
+      _export('Loader', Loader = function () {
         function Loader() {
           _classCallCheck(this, Loader);
 
@@ -141,7 +161,7 @@ System.register(['aurelia-path', 'aurelia-metadata'], function (_export) {
         };
 
         return Loader;
-      })();
+      }());
 
       _export('Loader', Loader);
     }

@@ -1,6 +1,10 @@
 declare module 'aurelia-loader' {
-  import { relativeToFile }  from 'aurelia-path';
-  import { Origin }  from 'aurelia-metadata';
+  import {
+    relativeToFile
+  } from 'aurelia-path';
+  import {
+    Origin
+  } from 'aurelia-metadata';
   
   /*eslint no-unused-vars:0*/
   /**
@@ -93,6 +97,9 @@ declare module 'aurelia-loader' {
     addDependency(src: string | Function, name?: string): void;
   }
   
+  /**
+  * A generic resource loader, for loading modules, html, css and more.
+  */
   /**
   * A generic resource loader, for loading modules, html, css and more.
   */
