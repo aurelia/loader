@@ -24,14 +24,10 @@ define(['exports', 'aurelia-path', 'aurelia-metadata'], function (exports, _aure
     };
   }();
 
-  function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-      throw new TypeError("Cannot call a class as a function");
-    }
-  }
+  
 
   var TemplateDependency = exports.TemplateDependency = function TemplateDependency(src, name) {
-    _classCallCheck(this, TemplateDependency);
+    
 
     this.src = src;
     this.name = name;
@@ -39,7 +35,7 @@ define(['exports', 'aurelia-path', 'aurelia-metadata'], function (exports, _aure
 
   var TemplateRegistryEntry = exports.TemplateRegistryEntry = function () {
     function TemplateRegistryEntry(address) {
-      _classCallCheck(this, TemplateRegistryEntry);
+      
 
       this.templateIsLoaded = false;
       this.factoryIsReady = false;
@@ -107,7 +103,7 @@ define(['exports', 'aurelia-path', 'aurelia-metadata'], function (exports, _aure
 
   var Loader = exports.Loader = function () {
     function Loader() {
-      _classCallCheck(this, Loader);
+      
 
       this.templateRegistry = {};
     }

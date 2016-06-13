@@ -1,13 +1,11 @@
 'use strict';
 
 System.register(['aurelia-path', 'aurelia-metadata'], function (_export, _context) {
+  "use strict";
+
   var relativeToFile, Origin, _createClass, TemplateDependency, TemplateRegistryEntry, Loader;
 
-  function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-      throw new TypeError("Cannot call a class as a function");
-    }
-  }
+  
 
   return {
     setters: [function (_aureliaPath) {
@@ -35,7 +33,7 @@ System.register(['aurelia-path', 'aurelia-metadata'], function (_export, _contex
       }();
 
       _export('TemplateDependency', TemplateDependency = function TemplateDependency(src, name) {
-        _classCallCheck(this, TemplateDependency);
+        
 
         this.src = src;
         this.name = name;
@@ -45,7 +43,7 @@ System.register(['aurelia-path', 'aurelia-metadata'], function (_export, _contex
 
       _export('TemplateRegistryEntry', TemplateRegistryEntry = function () {
         function TemplateRegistryEntry(address) {
-          _classCallCheck(this, TemplateRegistryEntry);
+          
 
           this.templateIsLoaded = false;
           this.factoryIsReady = false;
@@ -115,7 +113,7 @@ System.register(['aurelia-path', 'aurelia-metadata'], function (_export, _contex
 
       _export('Loader', Loader = function () {
         function Loader() {
-          _classCallCheck(this, Loader);
+          
 
           this.templateRegistry = {};
         }

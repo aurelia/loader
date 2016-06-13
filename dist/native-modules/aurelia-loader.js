@@ -1,26 +1,18 @@
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Loader = exports.TemplateRegistryEntry = exports.TemplateDependency = undefined;
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _aureliaPath = require('aurelia-path');
-
-var _aureliaMetadata = require('aurelia-metadata');
 
 
+import { relativeToFile } from 'aurelia-path';
+import { Origin } from 'aurelia-metadata';
 
-var TemplateDependency = exports.TemplateDependency = function TemplateDependency(src, name) {
+export var TemplateDependency = function TemplateDependency(src, name) {
   
 
   this.src = src;
   this.name = name;
 };
 
-var TemplateRegistryEntry = exports.TemplateRegistryEntry = function () {
+export var TemplateRegistryEntry = function () {
   function TemplateRegistryEntry(address) {
     
 
@@ -36,7 +28,7 @@ var TemplateRegistryEntry = exports.TemplateRegistryEntry = function () {
   }
 
   TemplateRegistryEntry.prototype.addDependency = function addDependency(src, name) {
-    var finalSrc = typeof src === 'string' ? (0, _aureliaPath.relativeToFile)(src, this.address) : _aureliaMetadata.Origin.get(src).moduleId;
+    var finalSrc = typeof src === 'string' ? relativeToFile(src, this.address) : Origin.get(src).moduleId;
 
     this.dependencies.push(new TemplateDependency(finalSrc, name));
   };
@@ -67,7 +59,7 @@ var TemplateRegistryEntry = exports.TemplateRegistryEntry = function () {
           throw new Error('<require> element in ' + address + ' has no "from" attribute.');
         }
 
-        dependencies[i] = new TemplateDependency((0, _aureliaPath.relativeToFile)(src, address), current.getAttribute('as'));
+        dependencies[i] = new TemplateDependency(relativeToFile(src, address), current.getAttribute('as'));
 
         if (current.parentNode) {
           current.parentNode.removeChild(current);
@@ -88,7 +80,7 @@ var TemplateRegistryEntry = exports.TemplateRegistryEntry = function () {
   return TemplateRegistryEntry;
 }();
 
-var Loader = exports.Loader = function () {
+export var Loader = function () {
   function Loader() {
     
 
