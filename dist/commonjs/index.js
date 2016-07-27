@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 var _aureliaLoader = require('./aurelia-loader');
 
 Object.keys(_aureliaLoader).forEach(function (key) {
-  if (key === "default") return;
+  if (key === "default" || key === "__esModule") return;
   Object.defineProperty(exports, key, {
     enumerable: true,
     get: function get() {
