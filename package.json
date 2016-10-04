@@ -35,11 +35,7 @@
       "aurelia-metadata": "^1.0.0",
       "aurelia-path": "^1.0.0"
     },
-    "devDependencies": {
-      "babel": "babel-core@^5.8.24",
-      "babel-runtime": "^5.8.24",
-      "core-js": "^2.0.3"
-    }
+    "devDependencies": {}
   },
   "dependencies": {
     "aurelia-metadata": "^1.0.0",
