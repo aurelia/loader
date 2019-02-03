@@ -1,1 +1,0 @@
-export * from 'aurelia-loader/aurelia-loader';
