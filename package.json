@@ -1,6 +1,6 @@
 {
   "name": "aurelia-loader",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An abstract module which specifies an interface for loading modules and view templates.",
   "keywords": [
     "aurelia",
@@ -30,15 +30,10 @@
   ],
   "jspm": {
     "registry": "npm",
-    "jspmPackage": true,
     "main": "aurelia-loader",
     "format": "amd",
     "directories": {
       "dist": "dist/amd"
-    },
-    "peerDependencies": {
-      "aurelia-metadata": "^1.0.0",
-      "aurelia-path": "^1.0.0"
     },
     "dependencies": {
       "aurelia-metadata": "^1.0.0",
@@ -48,7 +43,8 @@
   },
   "dependencies": {
     "aurelia-metadata": "^1.0.0",
-    "aurelia-path": "^1.0.0"
+    "aurelia-path": "^1.0.0",
+    "jspm": "^0.16.53"
   },
   "devDependencies": {
     "aurelia-tools": "^0.2.4",
