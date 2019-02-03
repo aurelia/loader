@@ -20,6 +20,11 @@
     "type": "git",
     "url": "http://github.com/aurelia/loader"
   },
+  "scripts": {
+    "test": "karma start --single-run",
+    "build": "gulp build",
+    "cut-release": "gulp prepare-release"
+  },
   "files": [
     "dist",
     "doc",
