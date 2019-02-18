@@ -14,11 +14,11 @@ describe('the template registry entry', () => {
       const entry = new TemplateRegistryEntry('my-module/my-main-component.html');
       entry.template = template;
       expect(entry.dependencies.length).toBe(1);
-	  expect(entry.dependencies[0].src).toBe('my-module/another-component');
+      expect(entry.dependencies[0].src).toBe('my-module/another-component');
 
-	  entry.addDependency('my-module/my-sub-component');
+      entry.addDependency('my-module/my-sub-component');
       expect(entry.dependencies.length).toBe(1);
-	  entry.addDependency('my-module/yet-another-component');
+      entry.addDependency('my-module/yet-another-component');
       expect(entry.dependencies.length).toBe(2);
     });
   });
