@@ -8,6 +8,16 @@ export let TemplateDependency = class TemplateDependency {
   }
 };
 
+const STUBBED_DEPENDENCIES = [];
+
+export function stubDependency(module) {
+  STUBBED_DEPENDENCIES.push(module);
+}
+
+export function resetStubbedDependencies() {
+  STUBBED_DEPENDENCIES.splice(0);
+}
+
 export let TemplateRegistryEntry = class TemplateRegistryEntry {
   constructor(address) {
     this.templateIsLoaded = false;
@@ -52,6 +62,10 @@ export let TemplateRegistryEntry = class TemplateRegistryEntry {
         current.parentNode.removeChild(current);
       }
     }
+
+    if (STUBBED_DEPENDENCIES.length > 0) {
+      this.dependencies = this.dependencies.filter(d => !STUBBED_DEPENDENCIES.includes(d.src));
+    }
   }
 
   get factory() {
@@ -65,6 +79,10 @@ export let TemplateRegistryEntry = class TemplateRegistryEntry {
 
   addDependency(src, name) {
     let finalSrc = typeof src === 'string' ? relativeToFile(src, this.address) : Origin.get(src).moduleId;
+
+    if (STUBBED_DEPENDENCIES.includes(finalSrc)) {
+      return;
+    }
 
     this.dependencies.push(new TemplateDependency(finalSrc, name));
   }

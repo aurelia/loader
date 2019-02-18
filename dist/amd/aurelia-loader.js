@@ -5,6 +5,8 @@ define(['exports', 'aurelia-path', 'aurelia-metadata'], function (exports, _aure
     value: true
   });
   exports.Loader = exports.TemplateRegistryEntry = exports.TemplateDependency = undefined;
+  exports.stubDependency = stubDependency;
+  exports.resetStubbedDependencies = resetStubbedDependencies;
 
   var _createClass = function () {
     function defineProperties(target, props) {
@@ -33,6 +35,16 @@ define(['exports', 'aurelia-path', 'aurelia-metadata'], function (exports, _aure
     this.name = name;
   };
 
+  var STUBBED_DEPENDENCIES = [];
+
+  function stubDependency(module) {
+    STUBBED_DEPENDENCIES.push(module);
+  }
+
+  function resetStubbedDependencies() {
+    STUBBED_DEPENDENCIES.splice(0);
+  }
+
   var TemplateRegistryEntry = exports.TemplateRegistryEntry = function () {
     function TemplateRegistryEntry(address) {
       
@@ -50,6 +62,10 @@ define(['exports', 'aurelia-path', 'aurelia-metadata'], function (exports, _aure
 
     TemplateRegistryEntry.prototype.addDependency = function addDependency(src, name) {
       var finalSrc = typeof src === 'string' ? (0, _aureliaPath.relativeToFile)(src, this.address) : _aureliaMetadata.Origin.get(src).moduleId;
+
+      if (STUBBED_DEPENDENCIES.includes(finalSrc)) {
+        return;
+      }
 
       this.dependencies.push(new TemplateDependency(finalSrc, name));
     };
@@ -85,6 +101,12 @@ define(['exports', 'aurelia-path', 'aurelia-metadata'], function (exports, _aure
           if (current.parentNode) {
             current.parentNode.removeChild(current);
           }
+        }
+
+        if (STUBBED_DEPENDENCIES.length > 0) {
+          this.dependencies = this.dependencies.filter(function (d) {
+            return !STUBBED_DEPENDENCIES.includes(d.src);
+          });
         }
       }
     }, {
