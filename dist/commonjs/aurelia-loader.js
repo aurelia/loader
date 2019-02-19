@@ -7,9 +7,6 @@ exports.Loader = exports.TemplateRegistryEntry = exports.TemplateDependency = un
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-exports.stubDependency = stubDependency;
-exports.resetStubbedDependencies = resetStubbedDependencies;
-
 var _aureliaPath = require('aurelia-path');
 
 var _aureliaMetadata = require('aurelia-metadata');
@@ -22,16 +19,6 @@ var TemplateDependency = exports.TemplateDependency = function TemplateDependenc
   this.src = src;
   this.name = name;
 };
-
-var STUBBED_DEPENDENCIES = [];
-
-function stubDependency(module) {
-  STUBBED_DEPENDENCIES.push(module);
-}
-
-function resetStubbedDependencies() {
-  STUBBED_DEPENDENCIES.splice(0);
-}
 
 var TemplateRegistryEntry = exports.TemplateRegistryEntry = function () {
   function TemplateRegistryEntry(address) {
@@ -50,10 +37,6 @@ var TemplateRegistryEntry = exports.TemplateRegistryEntry = function () {
 
   TemplateRegistryEntry.prototype.addDependency = function addDependency(src, name) {
     var finalSrc = typeof src === 'string' ? (0, _aureliaPath.relativeToFile)(src, this.address) : _aureliaMetadata.Origin.get(src).moduleId;
-
-    if (STUBBED_DEPENDENCIES.includes(finalSrc)) {
-      return;
-    }
 
     this.dependencies.push(new TemplateDependency(finalSrc, name));
   };
@@ -89,12 +72,6 @@ var TemplateRegistryEntry = exports.TemplateRegistryEntry = function () {
         if (current.parentNode) {
           current.parentNode.removeChild(current);
         }
-      }
-
-      if (STUBBED_DEPENDENCIES.length > 0) {
-        this.dependencies = this.dependencies.filter(function (d) {
-          return !STUBBED_DEPENDENCIES.includes(d.src);
-        });
       }
     }
   }, {

@@ -41,8 +41,6 @@ export declare class TemplateDependency {
     */
   constructor(src: string, name?: string);
 }
-export declare function stubDependency(module: string): any;
-export declare function resetStubbedDependencies(): any;
 
 /**
 * Represents an entry in the template registry.

@@ -3,21 +3,9 @@
 System.register(['aurelia-path', 'aurelia-metadata'], function (_export, _context) {
   "use strict";
 
-  var relativeToFile, Origin, _createClass, TemplateDependency, STUBBED_DEPENDENCIES, TemplateRegistryEntry, Loader;
+  var relativeToFile, Origin, _createClass, TemplateDependency, TemplateRegistryEntry, Loader;
 
   
-
-  function stubDependency(module) {
-    STUBBED_DEPENDENCIES.push(module);
-  }
-
-  _export('stubDependency', stubDependency);
-
-  function resetStubbedDependencies() {
-    STUBBED_DEPENDENCIES.splice(0);
-  }
-
-  _export('resetStubbedDependencies', resetStubbedDependencies);
 
   return {
     setters: [function (_aureliaPath) {
@@ -53,8 +41,6 @@ System.register(['aurelia-path', 'aurelia-metadata'], function (_export, _contex
 
       _export('TemplateDependency', TemplateDependency);
 
-      STUBBED_DEPENDENCIES = [];
-
       _export('TemplateRegistryEntry', TemplateRegistryEntry = function () {
         function TemplateRegistryEntry(address) {
           
@@ -72,10 +58,6 @@ System.register(['aurelia-path', 'aurelia-metadata'], function (_export, _contex
 
         TemplateRegistryEntry.prototype.addDependency = function addDependency(src, name) {
           var finalSrc = typeof src === 'string' ? relativeToFile(src, this.address) : Origin.get(src).moduleId;
-
-          if (STUBBED_DEPENDENCIES.includes(finalSrc)) {
-            return;
-          }
 
           this.dependencies.push(new TemplateDependency(finalSrc, name));
         };
@@ -111,12 +93,6 @@ System.register(['aurelia-path', 'aurelia-metadata'], function (_export, _contex
               if (current.parentNode) {
                 current.parentNode.removeChild(current);
               }
-            }
-
-            if (STUBBED_DEPENDENCIES.length > 0) {
-              this.dependencies = this.dependencies.filter(function (d) {
-                return !STUBBED_DEPENDENCIES.includes(d.src);
-              });
             }
           }
         }, {

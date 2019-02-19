@@ -12,16 +12,6 @@ export var TemplateDependency = function TemplateDependency(src, name) {
   this.name = name;
 };
 
-var STUBBED_DEPENDENCIES = [];
-
-export function stubDependency(module) {
-  STUBBED_DEPENDENCIES.push(module);
-}
-
-export function resetStubbedDependencies() {
-  STUBBED_DEPENDENCIES.splice(0);
-}
-
 export var TemplateRegistryEntry = function () {
   function TemplateRegistryEntry(address) {
     
@@ -39,10 +29,6 @@ export var TemplateRegistryEntry = function () {
 
   TemplateRegistryEntry.prototype.addDependency = function addDependency(src, name) {
     var finalSrc = typeof src === 'string' ? relativeToFile(src, this.address) : Origin.get(src).moduleId;
-
-    if (STUBBED_DEPENDENCIES.includes(finalSrc)) {
-      return;
-    }
 
     this.dependencies.push(new TemplateDependency(finalSrc, name));
   };
@@ -78,12 +64,6 @@ export var TemplateRegistryEntry = function () {
         if (current.parentNode) {
           current.parentNode.removeChild(current);
         }
-      }
-
-      if (STUBBED_DEPENDENCIES.length > 0) {
-        this.dependencies = this.dependencies.filter(function (d) {
-          return !STUBBED_DEPENDENCIES.includes(d.src);
-        });
       }
     }
   }, {

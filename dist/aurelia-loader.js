@@ -25,16 +25,6 @@ export class TemplateDependency {
   }
 }
 
-const STUBBED_DEPENDENCIES: string[] = [];
-
-export function stubDependency(module: string) {
-  STUBBED_DEPENDENCIES.push(module);
-}
-
-export function resetStubbedDependencies() {
-  STUBBED_DEPENDENCIES.splice(0);
-}
-
 /**
 * Represents an entry in the template registry.
 */
@@ -115,10 +105,6 @@ export class TemplateRegistryEntry {
         current.parentNode.removeChild(current);
       }
     }
-
-    if (STUBBED_DEPENDENCIES.length > 0) {
-      this.dependencies = this.dependencies.filter(d => !STUBBED_DEPENDENCIES.includes(d.src));
-    }
   }
 
   /**
@@ -145,10 +131,6 @@ export class TemplateRegistryEntry {
     let finalSrc = typeof src === 'string'
       ? relativeToFile(src, this.address)
       : Origin.get(src).moduleId;
-
-    if (STUBBED_DEPENDENCIES.includes(finalSrc)) {
-      return;
-    }
 
     this.dependencies.push(new TemplateDependency(finalSrc, name));
   }
