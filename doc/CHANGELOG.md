@@ -1,3 +1,13 @@
+<a name="1.0.2"></a>
+## [1.0.2](https://github.com/aurelia/loader/compare/1.0.1...1.0.2) (2019-02-04)
+
+
+### Bug Fixes
+
+* **all:** change es2015 back to native-modules ([64d4751](https://github.com/aurelia/loader/commit/64d4751))
+
+
+
 <a name="1.0.1"></a>
 ## [1.0.1](https://github.com/aurelia/loader/compare/1.0.0...1.0.1) (2019-01-18)
 
